@@ -6,47 +6,49 @@ enum HomeWidgetSize {
     case small, medium, large
 }
 
-/// 홈 화면 위젯 본문.
+/// 홈 화면 위젯 본문. date 는 타임라인 칸의 시각으로, 다이얼이 이 시각 기준으로 그려진다.
 struct HomeWidgetView: View {
     var size: HomeWidgetSize
+    var date: Date
     var timer: RunningTimer?
     var presets: [Int]
 
     var body: some View {
         Group {
-            switch size {
-            case .small:
-                if let timer {
-                    RunningPanel(timer: timer, numberSize: 40, stopSize: 28)
-                } else {
-                    PresetChips(presets: presets, columns: 3, running: nil)
-                        .frame(maxHeight: .infinity)
+            switch (size, timer) {
+            case (.small, let timer?):
+                SmallRunning(timer: timer, date: date)
+            case (.small, nil):
+                PresetTiles(presets: presets, columns: 3, running: nil)
+                    .frame(maxHeight: .infinity)
+            case (.medium, let timer?):
+                HStack(spacing: 16) {
+                    TimeDial(minutes: timer.remainingMinutes(at: date))
+                    RunningDetails(timer: timer, numberSize: 40)
                 }
-            case .medium:
-                if let timer {
-                    HStack(spacing: 18) {
-                        RunningPanel(timer: timer, numberSize: 40, stopSize: 28)
-                        PresetChips(presets: presets, columns: 3, running: timer)
-                            .frame(width: 138)
-                            .frame(maxHeight: .infinity)
-                    }
-                } else {
-                    VStack(alignment: .leading, spacing: 0) {
-                        Eyebrow(text: AppConfig.wordmark)
-                        Spacer(minLength: 12)
-                        PresetChips(presets: presets, columns: presets.count, running: nil)
-                    }
-                }
-            case .large:
+            case (.medium, nil):
                 VStack(alignment: .leading, spacing: 0) {
-                    if let timer {
-                        RunningPanel(timer: timer, numberSize: 64, stopSize: 34)
-                    } else {
-                        Eyebrow(text: AppConfig.wordmark)
-                        Spacer(minLength: 0)
+                    Eyebrow(text: AppConfig.wordmark)
+                    Spacer(minLength: 10)
+                    PresetTiles(presets: presets, columns: presets.count, running: nil)
+                    Spacer(minLength: 0)
+                }
+            case (.large, let timer?):
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack(spacing: 18) {
+                        TimeDial(minutes: timer.remainingMinutes(at: date))
+                            .frame(width: 150)
+                        RunningDetails(timer: timer, numberSize: 48)
                     }
-                    Spacer(minLength: 18)
-                    PresetChips(presets: presets, columns: 3, running: timer)
+                    .frame(height: 150)
+                    Spacer(minLength: 16)
+                    PresetTiles(presets: presets, columns: 3, running: timer)
+                }
+            case (.large, nil):
+                VStack(alignment: .leading, spacing: 0) {
+                    Eyebrow(text: AppConfig.wordmark)
+                    PresetTiles(presets: presets, columns: 3, running: nil)
+                        .frame(maxHeight: .infinity)
                 }
             }
         }
@@ -54,34 +56,50 @@ struct HomeWidgetView: View {
     }
 }
 
-/// 도는 동안: 머리글과 끝내기, 남은 시간, 막대, 경과·종료.
-struct RunningPanel: View {
+/// 작은 위젯이 돌 때: 다이얼 위에 남은 시간, 모서리에 끝내기.
+struct SmallRunning: View {
+    var timer: RunningTimer
+    var date: Date
+
+    var body: some View {
+        ZStack(alignment: .topTrailing) {
+            VStack(spacing: 6) {
+                TimeDial(minutes: timer.remainingMinutes(at: date))
+                LiveTime(interval: timer.interval, countsDown: true, alignment: .center)
+                    .font(Theme.number(24, weight: .regular))
+                    .widgetAccentable()
+            }
+            StopChip(alarmID: timer.alarmID, diameter: 26)
+                .offset(x: 4, y: -4)
+        }
+    }
+}
+
+/// 다이얼 옆: 머리글과 끝내기, 남은 시간, 경과·종료.
+struct RunningDetails: View {
     var timer: RunningTimer
     var numberSize: CGFloat
-    var stopSize: CGFloat
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .center) {
                 Eyebrow(text: timer.title)
                 Spacer(minLength: 8)
-                StopChip(alarmID: timer.alarmID, diameter: stopSize)
+                StopChip(alarmID: timer.alarmID, diameter: 28)
             }
             Spacer(minLength: 4)
             LiveTime(interval: timer.interval, countsDown: true)
                 .font(Theme.number(numberSize))
                 .minimumScaleFactor(0.6)
                 .widgetAccentable()
-            TimerBar(interval: timer.interval)
-                .padding(.top, 6)
             TimerMetaRow(interval: timer.interval, endDate: timer.endDate, size: 11)
-                .padding(.top, 8)
+                .padding(.top, 6)
         }
     }
 }
 
-/// 프리셋 원들. 원은 칸 폭에 맞춰 정원을 유지하고, 누르는 영역은 칸 전체다.
-struct PresetChips: View {
+/// 프리셋 타일: 60분 시계 판에 그 시간만큼 부채꼴을 깔고, 가운데 숫자.
+struct PresetTiles: View {
     var presets: [Int]
     var columns: Int
     var running: RunningTimer?
@@ -97,7 +115,7 @@ struct PresetChips: View {
                     ForEach(rows[row].indices, id: \.self) { column in
                         let minutes = rows[row][column]
                         Button(intent: StartTimerIntent(minutes: minutes)) {
-                            GlassChip(minutes: minutes, selected: running?.matches(minutes: minutes) == true)
+                            PresetTile(minutes: minutes, selected: running?.matches(minutes: minutes) == true)
                         }
                         .buttonStyle(.plain)
                     }
@@ -107,37 +125,34 @@ struct PresetChips: View {
     }
 }
 
-struct GlassChip: View {
+struct PresetTile: View {
     var minutes: Int
     var selected: Bool
-    private static let numberRatio: CGFloat = 0.38
+    private static let numberRatio: CGFloat = 0.34
 
     var body: some View {
-        Circle()
-            .fill(selected ? AnyShapeStyle(Theme.ink) : AnyShapeStyle(.white.opacity(0.1)))
-            .overlay(
-                Circle().strokeBorder(
-                    LinearGradient(colors: [.white.opacity(selected ? 0 : 0.4), .white.opacity(0.04)],
-                                   startPoint: .topLeading, endPoint: .bottomTrailing),
-                    lineWidth: 0.8
-                )
-            )
-            .overlay(
-                // 숫자는 원 지름에 비례한다. 작은 위젯과 큰 위젯에서 같은 비율로 보인다.
-                GeometryReader { proxy in
-                    Text("\(minutes)")
-                        .font(.system(size: proxy.size.width * Self.numberRatio,
-                                      weight: selected ? .semibold : .medium, design: .rounded).monospacedDigit())
-                        .minimumScaleFactor(0.5)
-                        .lineLimit(1)
-                        .foregroundStyle(selected ? .black : Theme.ink)
-                        .widgetAccentable()
-                        .frame(width: proxy.size.width, height: proxy.size.height)
-                }
-                .padding(4)
-            )
-            .aspectRatio(1, contentMode: .fit)
-            .frame(maxWidth: .infinity)
-            .contentShape(Rectangle())
+        TimeDial(
+            minutes: Double(minutes),
+            wedge: .white.opacity(0.24),
+            face: .white.opacity(0.07),
+            showsTicks: false,
+            showsCap: false,
+            highlighted: selected
+        )
+        .overlay(
+            GeometryReader { proxy in
+                Text("\(minutes)")
+                    .font(.system(size: proxy.size.width * Self.numberRatio, weight: .semibold, design: .rounded).monospacedDigit())
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+                    .foregroundStyle(Theme.ink)
+                    .shadow(color: .black.opacity(0.6), radius: 2)
+                    .widgetAccentable()
+                    .frame(width: proxy.size.width, height: proxy.size.height)
+            }
+            .padding(4)
+        )
+        .frame(maxWidth: .infinity)
+        .contentShape(Rectangle())
     }
 }

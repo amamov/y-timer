@@ -3,31 +3,30 @@ import SwiftUI
 import WidgetKit
 
 // 잠금 화면에서는 버튼 label 을 눌러야만 인텐트가 돌고, 그 밖을 누르면 앱이 열린다.
-// 그래서 배경은 버튼 바깥에 두고 label 이 칸 전체를 채우게 한다.
+// 그래서 배경은 버튼 바깥에 두고 label 이 칸 전체를 채우게 한다. label 안에는 GeometryReader 를 두지 않는다.
 // 참고: https://github.com/home-assistant/iOS/pull/5647
 
-/// 잠금 화면 원형: 한 칸.
+/// 잠금 화면 원형: 한 칸. 대기 중에는 그 시간의 부채꼴, 도는 동안은 줄어드는 부채꼴.
 struct LockSingleView: View {
     var minutes: Int
+    var date: Date
     var timer: RunningTimer?
 
     var body: some View {
         ZStack {
             AccessoryWidgetBackground()
             if let timer {
-                LockRing(timer: timer)
+                TimeDial(minutes: timer.remainingMinutes(at: date), face: .clear, showsTicks: false)
+                    .padding(6)
             } else {
+                TimeDial(minutes: Double(minutes), wedge: .white.opacity(0.35), face: .clear, showsTicks: false, showsCap: false)
+                    .padding(6)
                 Button(intent: StartTimerIntent(minutes: minutes)) {
-                    VStack(spacing: -2) {
-                        Text("\(minutes)")
-                            .font(.system(size: 24, weight: .semibold, design: .rounded).monospacedDigit())
-                            .minimumScaleFactor(0.6)
-                        Text("분")
-                            .font(.system(size: 10, weight: .semibold, design: .rounded))
-                            .opacity(0.7)
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .contentShape(Circle())
+                    Text("\(minutes)")
+                        .font(.system(size: 22, weight: .bold, design: .rounded).monospacedDigit())
+                        .minimumScaleFactor(0.6)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .contentShape(Circle())
                 }
                 .buttonStyle(.plain)
             }
@@ -38,13 +37,14 @@ struct LockSingleView: View {
 /// 잠금 화면 직사각형: 세 칸.
 struct LockRowView: View {
     var minutes: [Int]
+    var date: Date
     var timer: RunningTimer?
 
     var body: some View {
         if let timer {
             HStack(spacing: 10) {
-                LockRing(timer: timer)
-                    .frame(width: 44, height: 44)
+                TimeDial(minutes: timer.remainingMinutes(at: date), face: .white.opacity(0.15), showsTicks: false)
+                    .frame(width: 50, height: 50)
                 VStack(alignment: .leading, spacing: 1) {
                     LiveTime(interval: timer.interval, countsDown: true)
                         .font(.system(size: 26, weight: .semibold, design: .rounded).monospacedDigit())
@@ -61,9 +61,11 @@ struct LockRowView: View {
                 ForEach(minutes.indices, id: \.self) { index in
                     ZStack {
                         AccessoryWidgetBackground().clipShape(Circle())
+                        TimeDial(minutes: Double(minutes[index]), wedge: .white.opacity(0.35), face: .clear, showsTicks: false, showsCap: false)
+                            .padding(4)
                         Button(intent: StartTimerIntent(minutes: minutes[index])) {
                             Text("\(minutes[index])")
-                                .font(.system(size: 20, weight: .semibold, design: .rounded).monospacedDigit())
+                                .font(.system(size: 19, weight: .bold, design: .rounded).monospacedDigit())
                                 .minimumScaleFactor(0.5)
                                 .lineLimit(1)
                                 .padding(4)
@@ -78,22 +80,5 @@ struct LockRowView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-    }
-}
-
-/// 남은 비율 링. 가운데는 남은 시간.
-struct LockRing: View {
-    var timer: RunningTimer
-
-    var body: some View {
-        ProgressView(timerInterval: timer.interval, countsDown: true) {
-            EmptyView()
-        } currentValueLabel: {
-            Text(timerInterval: timer.interval, countsDown: true)
-                .font(.system(size: 12, weight: .semibold, design: .rounded).monospacedDigit())
-                .multilineTextAlignment(.center)
-                .minimumScaleFactor(0.5)
-        }
-        .progressViewStyle(.circular)
     }
 }

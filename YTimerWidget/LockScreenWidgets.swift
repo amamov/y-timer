@@ -7,7 +7,7 @@ import WidgetKit
 struct LockPresetWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: "LockSingleWidget", provider: TimerProvider()) { entry in
-            LockSingleView(minutes: entry.selection.singleMinutes(in: entry.presets), timer: entry.timer)
+            LockSingleView(minutes: entry.selection.singleMinutes(in: entry.presets), date: entry.date, timer: entry.timer)
                 .containerBackground(.clear, for: .widget)
         }
         .configurationDisplayName(AppConfig.displayName)
@@ -20,7 +20,7 @@ struct LockPresetWidget: Widget {
 struct LockRowWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: "LockRowStaticWidget", provider: TimerProvider()) { entry in
-            LockRowView(minutes: entry.selection.rowMinutes(in: entry.presets), timer: entry.timer)
+            LockRowView(minutes: entry.selection.rowMinutes(in: entry.presets), date: entry.date, timer: entry.timer)
                 .containerBackground(.clear, for: .widget)
         }
         .configurationDisplayName(AppConfig.displayName)

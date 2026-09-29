@@ -16,14 +16,17 @@ struct TimerProvider: TimelineProvider {
         completion(TimerEntry(date: .now, timer: RunningTimer.current))
     }
 
-    /// 도는 동안 한 칸, 끝나는 순간 프리셋 화면으로 돌아가는 한 칸.
+    /// 도는 동안은 다이얼이 줄어드는 칸들, 끝나는 순간 프리셋 화면으로 돌아가는 한 칸.
     func getTimeline(in context: Context, completion: @escaping (Timeline<TimerEntry>) -> Void) {
         guard let timer = RunningTimer.current, !timer.isFinished() else {
             completion(Timeline(entries: [TimerEntry(date: .now)], policy: .never))
             return
         }
+        let range = TimerLimits.dialStepRange
+        let step = min(max(timer.duration / Double(TimerLimits.dialSteps), range.lowerBound), range.upperBound)
+        let dates = stride(from: Date.now, to: timer.endDate, by: step)
         completion(Timeline(
-            entries: [TimerEntry(date: .now, timer: timer), TimerEntry(date: timer.endDate)],
+            entries: dates.map { TimerEntry(date: $0, timer: timer) } + [TimerEntry(date: timer.endDate)],
             policy: .never
         ))
     }
@@ -47,7 +50,7 @@ struct PresetWidgetEntryView: View {
     var entry: TimerEntry
 
     var body: some View {
-        HomeWidgetView(size: size, timer: entry.timer, presets: entry.presets)
+        HomeWidgetView(size: size, date: entry.date, timer: entry.timer, presets: entry.presets)
     }
 
     private var size: HomeWidgetSize {

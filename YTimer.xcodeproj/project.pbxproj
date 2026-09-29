@@ -16,9 +16,11 @@
 		29B3159504AB40BA0FF42F80 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E516DAA79BFAA2A6AD81D /* AppConfig.swift */; };
 		2E260941A3D4659E1D379AA1 /* digital.caf in Resources */ = {isa = PBXBuildFile; fileRef = B6E5CECB42C6EFA95CED7E65 /* digital.caf */; };
 		33F74435B78CAD1E4A016F10 /* YTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464231845B33D96694B5FF51 /* YTimerApp.swift */; };
+		37B3D14C3E570DBD16B5CD7C /* TimeDial.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB68B629536396C45D126B7A /* TimeDial.swift */; };
 		44C81A5D49BA02CEA7742F20 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F1308AD1E24CD4EFEE6A2 /* Log.swift */; };
 		48E86349B0C1C994E9E20393 /* SharedDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEB1E9426006975005E355 /* SharedDefaults.swift */; };
 		5073EE64C3DEAD476333F3F0 /* pulse.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3193C062AECFFC71AD5FDF71 /* pulse.caf */; };
+		51675DFF585F92F307766669 /* TimeDial.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB68B629536396C45D126B7A /* TimeDial.swift */; };
 		562B0F69A97EA6BBCA4F2493 /* HomeWidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E812D92579C6D440868CDD1 /* HomeWidgetViews.swift */; };
 		592BA817BB2DB6A319059B85 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74794B7C906C99F87AAB1B42 /* TimerService.swift */; };
 		59653D8C455E7F29286E40A0 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E516DAA79BFAA2A6AD81D /* AppConfig.swift */; };
@@ -126,6 +128,7 @@
 		F35FCCECA4F5DCD02C5E4CA4 /* LiveActivityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityViews.swift; sourceTree = "<group>"; };
 		F7E2467B4ECC5E9D523BB7E2 /* YTimerWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTimerWidgetBundle.swift; sourceTree = "<group>"; };
 		F902DCC84A6DB8CC9BD49E67 /* sounds.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sounds.json; sourceTree = "<group>"; };
+		FB68B629536396C45D126B7A /* TimeDial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDial.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -189,6 +192,7 @@
 				1E812D92579C6D440868CDD1 /* HomeWidgetViews.swift */,
 				F35FCCECA4F5DCD02C5E4CA4 /* LiveActivityViews.swift */,
 				CC297316A4D957A6E2888B7F /* LockWidgetViews.swift */,
+				FB68B629536396C45D126B7A /* TimeDial.swift */,
 				6FFAD00B0F072CA5BFA83F2B /* WidgetParts.swift */,
 			);
 			path = WidgetUI;
@@ -375,6 +379,7 @@
 				F79D76E804A85BBB98B01AB4 /* PresetWidget.swift in Sources */,
 				F074B0DA5C1664E6E65C5350 /* SharedDefaults.swift in Sources */,
 				6AEB984DBAA76F85DA5A662E /* Theme.swift in Sources */,
+				51675DFF585F92F307766669 /* TimeDial.swift in Sources */,
 				196C0067A86ABEDA25D449C9 /* TimerIntents.swift in Sources */,
 				CD666D38DCE3514484D3642B /* TimerLiveActivity.swift in Sources */,
 				A4B338775044FC7CF30B8508 /* TimerModels.swift in Sources */,
@@ -408,6 +413,7 @@
 				019025467F63317F23C2E1DC /* SettingsView.swift in Sources */,
 				48E86349B0C1C994E9E20393 /* SharedDefaults.swift in Sources */,
 				FD20EC362BEAB46EAB43D065 /* Theme.swift in Sources */,
+				37B3D14C3E570DBD16B5CD7C /* TimeDial.swift in Sources */,
 				B45C0CF1B2B00791364DCFD4 /* TimerIntents.swift in Sources */,
 				A6D40DFAC382CB3B90EC248A /* TimerModels.swift in Sources */,
 				592BA817BB2DB6A319059B85 /* TimerService.swift in Sources */,

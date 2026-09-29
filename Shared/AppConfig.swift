@@ -26,6 +26,10 @@ enum TimerLimits {
     static let defaultLockRow = defaultLockRowSlots.map { defaultPresets[$0] }
     static let defaultSingle = defaultPresets[defaultSingleSlot]
 
+    /// 위젯 다이얼은 미리 계산한 칸으로 줄어든다. 칸 수와 칸 간격의 범위.
+    static let dialSteps = 120
+    static let dialStepRange: ClosedRange<TimeInterval> = 5...60
+
     static func clampMinutes(_ minutes: Int) -> Int {
         min(max(minutes, presetMinutes.lowerBound), presetMinutes.upperBound)
     }

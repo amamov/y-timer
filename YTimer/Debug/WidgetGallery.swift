@@ -16,8 +16,8 @@ struct WidgetGallery: View {
     private let contentMargin: CGFloat = 16
 
     private var timer: RunningTimer {
-        let duration = TimerFormat.seconds(minutes: TimerLimits.defaultPresets[0])
-        let start = Date.now.addingTimeInterval(-3)
+        let duration = TimerFormat.seconds(minutes: TimerLimits.defaultPresets[2])
+        let start = Date.now.addingTimeInterval(-duration * 0.27)
         return RunningTimer(alarmID: UUID(), duration: duration, startDate: start, endDate: start.addingTimeInterval(duration))
     }
 
@@ -42,12 +42,12 @@ struct WidgetGallery: View {
                     }
                     lockScreen {
                         HStack(spacing: 16) {
-                            accessory(rectangular) { LockRowView(minutes: TimerLimits.defaultLockRow, timer: nil) }
-                            accessory(circular) { LockSingleView(minutes: TimerLimits.defaultSingle, timer: nil) }
+                            accessory(rectangular) { LockRowView(minutes: TimerLimits.defaultLockRow, date: .now, timer: nil) }
+                            accessory(circular) { LockSingleView(minutes: TimerLimits.defaultSingle, date: .now, timer: nil) }
                         }
                         HStack(spacing: 16) {
-                            accessory(rectangular) { LockRowView(minutes: TimerLimits.defaultLockRow, timer: timer) }
-                            accessory(circular) { LockSingleView(minutes: TimerLimits.defaultSingle, timer: timer) }
+                            accessory(rectangular) { LockRowView(minutes: TimerLimits.defaultLockRow, date: .now, timer: timer) }
+                            accessory(circular) { LockSingleView(minutes: TimerLimits.defaultSingle, date: .now, timer: timer) }
                         }
                     }
                     ZStack {
@@ -56,15 +56,15 @@ struct WidgetGallery: View {
                     }
                 case 2:
                     HStack(spacing: 20) {
-                        home(small) { HomeWidgetView(size: .small, timer: nil, presets: TimerLimits.defaultPresets) }
-                        home(small) { HomeWidgetView(size: .small, timer: timer, presets: TimerLimits.defaultPresets) }
+                        home(small) { HomeWidgetView(size: .small, date: .now, timer: nil, presets: TimerLimits.defaultPresets) }
+                        home(small) { HomeWidgetView(size: .small, date: .now, timer: timer, presets: TimerLimits.defaultPresets) }
                     }
                     .scaleEffect(0.9)
-                    home(medium) { HomeWidgetView(size: .medium, timer: nil, presets: TimerLimits.defaultPresets) }
-                    home(medium) { HomeWidgetView(size: .medium, timer: timer, presets: TimerLimits.defaultPresets) }
+                    home(medium) { HomeWidgetView(size: .medium, date: .now, timer: nil, presets: TimerLimits.defaultPresets) }
+                    home(medium) { HomeWidgetView(size: .medium, date: .now, timer: timer, presets: TimerLimits.defaultPresets) }
                 default:
-                    home(large) { HomeWidgetView(size: .large, timer: timer, presets: TimerLimits.defaultPresets) }
-                    home(large) { HomeWidgetView(size: .large, timer: nil, presets: TimerLimits.defaultPresets) }
+                    home(large) { HomeWidgetView(size: .large, date: .now, timer: timer, presets: TimerLimits.defaultPresets) }
+                    home(large) { HomeWidgetView(size: .large, date: .now, timer: nil, presets: TimerLimits.defaultPresets) }
                         .scaleEffect(0.8)
                 }
             }

@@ -18,8 +18,16 @@ struct LiveTime: View {
     var body: some View {
         Text(timerInterval: interval, countsDown: countsDown)
             .multilineTextAlignment(alignment)
-            .frame(maxWidth: .infinity, alignment: alignment == .trailing ? .trailing : .leading)
+            .frame(maxWidth: .infinity, alignment: frameAlignment)
             .lineLimit(1)
+    }
+
+    private var frameAlignment: Alignment {
+        switch alignment {
+        case .center: .center
+        case .trailing: .trailing
+        default: .leading
+        }
     }
 }
 
