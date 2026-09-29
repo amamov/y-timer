@@ -19,6 +19,7 @@
 		B690BA7183D2CEEA06180E4F /* TimerPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485850C38246F4554969439E /* TimerPreset.swift */; };
 		CAD139560202C76193A0A328 /* XTimerWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E43D496D41CC1C152F83EEE4 /* XTimerWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D70E2E175FE0AD11AB75F55A /* RunningTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB70C14DE5F4F533C5FB42C /* RunningTimer.swift */; };
+		DDCA6A684DD1214589DD62A6 /* LockScreenWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D165AB049F256097459197 /* LockScreenWidgets.swift */; };
 		E224CB9DFD3319D72E08459F /* RunningTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB70C14DE5F4F533C5FB42C /* RunningTimer.swift */; };
 		E5D6B9BC0F1B98881D0EE520 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4419F3485939B81FB6628C9F /* Assets.xcassets */; };
 		E7D9CEBC35CE2083F802D5E7 /* TimerLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1635D0326F1404794408D289 /* TimerLiveActivity.swift */; };
@@ -62,6 +63,7 @@
 		4DA2F5A24E5774597C89BB9A /* XTimerWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XTimerWidget.entitlements; sourceTree = "<group>"; };
 		6F20004DC756C4EF37C59950 /* XTimer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = XTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EE29945D0AB72ECFDDAF2C4 /* XTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTimerApp.swift; sourceTree = "<group>"; };
+		A9D165AB049F256097459197 /* LockScreenWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidgets.swift; sourceTree = "<group>"; };
 		BBA5B76AB164486ED266C0D1 /* TimerIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerIntents.swift; sourceTree = "<group>"; };
 		C56E356E7BF6D389DFE87A53 /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
 		D359068C76C046B1B373E0F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				D359068C76C046B1B373E0F1 /* Info.plist */,
+				A9D165AB049F256097459197 /* LockScreenWidgets.swift */,
 				112F22119020D8F0B2E17E28 /* PresetControl.swift */,
 				2498FA1D87476E51951FDCF1 /* PresetWidget.swift */,
 				1635D0326F1404794408D289 /* TimerLiveActivity.swift */,
@@ -235,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDCA6A684DD1214589DD62A6 /* LockScreenWidgets.swift in Sources */,
 				140DB2BB105E9344CC4D45EB /* PresetControl.swift in Sources */,
 				59C919DD2EA3BBB4B73889C8 /* PresetWidget.swift in Sources */,
 				E224CB9DFD3319D72E08459F /* RunningTimer.swift in Sources */,

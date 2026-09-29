@@ -132,7 +132,7 @@ struct RunningSummary: View {
     }
 }
 
-/// 잠금 화면 위젯: 남은 시간과 진행을 보여 준다.
+/// 잠금 화면 시계 위 한 줄: 남은 시간.
 struct TimerStatusWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: "TimerStatusWidget", provider: TimerProvider()) { entry in
@@ -141,41 +141,18 @@ struct TimerStatusWidget: Widget {
         }
         .configurationDisplayName("X-Timer 상태")
         .description("남은 시간을 잠금 화면에 보여 줍니다.")
-        .supportedFamilies([.accessoryCircular, .accessoryRectangular, .accessoryInline])
+        .supportedFamilies([.accessoryInline])
     }
 }
 
 struct TimerStatusView: View {
-    @Environment(\.widgetFamily) private var family
     var entry: TimerEntry
 
     var body: some View {
         if let timer = entry.timer {
-            switch family {
-            case .accessoryCircular:
-                ProgressView(timerInterval: timer.interval, countsDown: true) {
-                    EmptyView()
-                } currentValueLabel: {
-                    Text("\(timer.minutes)")
-                }
-                .progressViewStyle(.circular)
-            case .accessoryInline:
-                Text(timerInterval: timer.interval, countsDown: true)
-            default:
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(timerInterval: timer.interval, countsDown: true)
-                        .font(.system(.title2, design: .rounded).weight(.bold))
-                        .monospacedDigit()
-                    ProgressView(timerInterval: timer.interval, countsDown: true) { EmptyView() } currentValueLabel: { EmptyView() }
-                }
-            }
+            Text(timerInterval: timer.interval, countsDown: true)
         } else {
-            switch family {
-            case .accessoryInline:
-                Label("X-Timer", systemImage: "timer")
-            default:
-                Image(systemName: "timer").font(.title2)
-            }
+            Label("X-Timer", systemImage: "timer")
         }
     }
 }
