@@ -90,9 +90,9 @@ struct DialFace: View {
                     .font(.system(size: 12, weight: .medium, design: .rounded).monospacedDigit())
                     .foregroundStyle(Theme.secondary)
                 } else {
-                    Text("시간을 고르세요")
-                        .font(.system(size: 20, weight: .light, design: .rounded))
-                        .foregroundStyle(Theme.secondary)
+                    Text(TimerFormat.clock(0))
+                        .font(Theme.number(58))
+                        .foregroundStyle(Theme.faint)
                 }
             }
             .padding(54)

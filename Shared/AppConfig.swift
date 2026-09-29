@@ -5,7 +5,6 @@ enum AppConfig {
     static let appGroup = info("AppGroupIdentifier")
     static let author = info("AppAuthor")
     static let displayName = info("CFBundleDisplayName")
-    static let version = info("CFBundleShortVersionString")
 
     private static func info(_ key: String) -> String {
         Bundle.main.object(forInfoDictionaryKey: key) as? String ?? ""

@@ -45,15 +45,11 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section {
+                Section("알림음") {
                     soundRow(name: "시스템 기본", file: nil)
                     ForEach(AlarmSound.catalog) { sound in
                         soundRow(name: sound.name, file: sound.file, preview: sound)
                     }
-                } header: {
-                    Text("알림음")
-                } footer: {
-                    Text("누르면 미리 들려줍니다.")
                 }
 
                 Section {
@@ -62,24 +58,6 @@ struct SettingsView: View {
                         set: { value in store.updateSettings { $0.offersRepeat = value } }
                     ))
                     .tint(Theme.secondary)
-                } header: {
-                    Text("끝났을 때")
-                } footer: {
-                    Text("알람 화면에서 누르면 같은 시간으로 다시 시작합니다.")
-                }
-
-                Section {
-                    infoRow("무음 모드와 집중 모드에서도 울립니다", systemImage: "bell.and.waves.left.and.right")
-                    infoRow("진동은 iOS 설정 > 사운드 및 햅틱을 따릅니다", systemImage: "iphone.radiowaves.left.and.right")
-                } header: {
-                    Text("무음 모드")
-                } footer: {
-                    Text("진동만 원하면 알림음을 '소리 없음'으로 고르세요. 진동 패턴은 iOS 가 정하며 앱에서 바꿀 수 없습니다.")
-                }
-
-                Section {
-                    LabeledContent("버전", value: AppConfig.version)
-                    LabeledContent("만든 사람", value: AppConfig.author)
                 }
             }
             .tint(Theme.ink)
@@ -95,14 +73,6 @@ struct SettingsView: View {
         }
         .preferredColorScheme(.dark)
         .onDisappear { SoundPreview.shared.stop() }
-    }
-
-    private func infoRow(_ text: String, systemImage: String) -> some View {
-        Label {
-            Text(text)
-        } icon: {
-            Image(systemName: systemImage).foregroundStyle(Theme.ink)
-        }
     }
 
     private func soundRow(name: String, file: String?, preview: AlarmSound? = nil) -> some View {

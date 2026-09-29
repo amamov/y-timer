@@ -10,8 +10,7 @@ struct PresetControl: ControlWidget {
                 Label(TimerFormat.title(TimerFormat.seconds(minutes: configuration.minutes)), systemImage: "timer")
             }
         }
-        .displayName("\(AppConfig.displayName) 시작")
-        .description("정한 분만큼 바로 타이머를 시작합니다.")
+        .displayName("타이머 시작")
     }
 }
 

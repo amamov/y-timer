@@ -69,8 +69,8 @@ struct LockPresetWidget: Widget {
             LockPresetView(entry: entry)
                 .containerBackground(.clear, for: .widget)
         }
-        .configurationDisplayName("\(AppConfig.displayName) 바로 시작")
-        .description("잠금 화면에서 누르면 잠금 해제 없이 바로 시작합니다.")
+        .configurationDisplayName(AppConfig.displayName)
+        .description("한 칸")
         .supportedFamilies([.accessoryCircular])
     }
 }
@@ -109,8 +109,8 @@ struct LockRowWidget: Widget {
             LockRowView(entry: entry)
                 .containerBackground(.clear, for: .widget)
         }
-        .configurationDisplayName("\(AppConfig.displayName) 세 칸")
-        .description("세 칸의 분을 직접 정하고, 잠금 화면에서 눌러 잠금 해제 없이 바로 시작합니다.")
+        .configurationDisplayName(AppConfig.displayName)
+        .description("세 칸")
         .supportedFamilies([.accessoryRectangular])
     }
 }

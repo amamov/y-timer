@@ -68,10 +68,6 @@ struct PresetEditor: View {
                 .pickerStyle(.wheel)
                 .frame(height: 180)
 
-                Text("홈 화면 위젯에도 같은 프리셋이 나옵니다. 잠금 화면 위젯은 위젯을 길게 눌러 따로 정합니다.")
-                    .font(.footnote)
-                    .foregroundStyle(Theme.secondary)
-                    .multilineTextAlignment(.center)
                 Spacer()
             }
             .padding(24)

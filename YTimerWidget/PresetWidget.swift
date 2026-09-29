@@ -36,7 +36,7 @@ struct PresetWidget: Widget {
                 .containerBackground(for: .widget) { WidgetGlassBackground() }
         }
         .configurationDisplayName(AppConfig.displayName)
-        .description("앱에서 정한 프리셋을 누르면 바로 시작합니다.")
+        .description("프리셋")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
@@ -92,14 +92,10 @@ struct PresetWidgetView: View {
 
 struct IdleHeader: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(AppConfig.wordmark)
-                .font(.system(size: 12, weight: .bold, design: .rounded))
-                .tracking(4)
-                .foregroundStyle(Theme.secondary)
-            Text("시간을 고르세요")
-                .font(.system(size: 26, weight: .light, design: .rounded))
-        }
+        Text(AppConfig.wordmark)
+            .font(.system(size: 12, weight: .bold, design: .rounded))
+            .tracking(4)
+            .foregroundStyle(Theme.secondary)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 }
@@ -203,8 +199,8 @@ struct TimerStatusWidget: Widget {
             TimerStatusView(entry: entry)
                 .containerBackground(.clear, for: .widget)
         }
-        .configurationDisplayName("\(AppConfig.displayName) 상태")
-        .description("남은 시간을 잠금 화면에 보여 줍니다.")
+        .configurationDisplayName(AppConfig.displayName)
+        .description("남은 시간")
         .supportedFamilies([.accessoryInline])
     }
 }
