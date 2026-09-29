@@ -5,6 +5,8 @@ import AppIntents
 struct StartTimerIntent: LiveActivityIntent {
     static let title: LocalizedStringResource = "타이머 시작"
     static let description = IntentDescription("정한 시간으로 바로 타이머를 시작합니다.")
+    // 잠금 화면에서 눌러도 Face ID 없이 바로 돈다.
+    static let authenticationPolicy: IntentAuthenticationPolicy = .alwaysAllowed
 
     @Parameter(title: "시간", default: .m10)
     var preset: TimerPreset
@@ -24,6 +26,7 @@ struct StartTimerIntent: LiveActivityIntent {
 
 struct StopTimerIntent: LiveActivityIntent {
     static let title: LocalizedStringResource = "타이머 끝내기"
+    static let authenticationPolicy: IntentAuthenticationPolicy = .alwaysAllowed
 
     @Parameter(title: "알람 ID")
     var alarmID: String?

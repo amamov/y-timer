@@ -16,7 +16,7 @@ enum TimerServiceError: Error, CustomLocalizedStringResourceConvertible {
 
 /// 타이머는 하나만 돈다. 새로 시작하면 이전 것은 취소한다.
 enum TimerService {
-    static let tint = Color.orange
+    static let tint = Color.white
 
     static func requestAuthorization() async -> Bool {
         let manager = AlarmManager.shared

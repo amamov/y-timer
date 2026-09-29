@@ -32,11 +32,22 @@ struct PresetWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: "PresetWidget", provider: TimerProvider()) { entry in
             PresetWidgetView(entry: entry)
-                .containerBackground(.black, for: .widget)
+                .containerBackground(for: .widget) { WidgetGlassBackground() }
         }
         .configurationDisplayName("X-Timer")
         .description("누르면 바로 시작합니다.")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+    }
+}
+
+/// 검은 유리판. 위쪽에 흰 빛이 살짝 번진다.
+struct WidgetGlassBackground: View {
+    var body: some View {
+        ZStack {
+            Color.black
+            RadialGradient(colors: [.white.opacity(0.16), .clear], center: .topLeading, startRadius: 0, endRadius: 260)
+            LinearGradient(colors: [.white.opacity(0.06), .clear], startPoint: .top, endPoint: .center)
+        }
     }
 }
 
@@ -45,28 +56,78 @@ struct PresetWidgetView: View {
     var entry: TimerEntry
 
     var body: some View {
-        switch family {
-        case .systemMedium:
-            HStack(spacing: 12) {
-                if let timer = entry.timer {
-                    RunningSummary(timer: timer).frame(maxWidth: .infinity)
+        Group {
+            switch family {
+            case .systemMedium:
+                HStack(spacing: 14) {
+                    if let timer = entry.timer {
+                        RunningSummary(timer: timer, compact: true)
+                            .frame(maxWidth: .infinity)
+                        PresetButtons(columns: 3, selected: timer.minutes)
+                            .frame(maxWidth: .infinity)
+                    } else {
+                        PresetButtons(columns: 3, selected: nil)
+                    }
                 }
-                PresetButtons(columns: entry.timer == nil ? 6 : 3, selected: entry.timer?.minutes)
-            }
-        case .systemLarge:
-            VStack(spacing: 16) {
-                if let timer = entry.timer {
-                    RunningSummary(timer: timer).frame(maxHeight: .infinity)
+            case .systemLarge:
+                VStack(spacing: 18) {
+                    if let timer = entry.timer {
+                        RunningSummary(timer: timer, compact: false)
+                    } else {
+                        IdleHeader()
+                    }
+                    PresetButtons(columns: 3, selected: entry.timer?.minutes)
                 }
-                PresetButtons(columns: 3, selected: entry.timer?.minutes)
-            }
-        default:
-            if let timer = entry.timer {
-                RunningSummary(timer: timer)
-            } else {
-                PresetButtons(columns: 3, selected: nil)
+            default:
+                if let timer = entry.timer {
+                    RunningSummary(timer: timer, compact: true)
+                } else {
+                    PresetButtons(columns: 3, selected: nil)
+                }
             }
         }
+        .foregroundStyle(.white)
+    }
+}
+
+struct IdleHeader: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text("X-TIMER")
+                .font(.system(size: 12, weight: .bold, design: .rounded))
+                .tracking(4)
+                .foregroundStyle(Theme.secondary)
+            Text("시간을 고르세요")
+                .font(.system(size: 26, weight: .light, design: .rounded))
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+    }
+}
+
+/// 유리 알약 버튼. 누른 칸 전체가 버튼이 되도록 label 이 칸을 꽉 채운다.
+struct GlassChip: View {
+    var preset: TimerPreset
+    var selected: Bool
+
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(selected ? AnyShapeStyle(.white) : AnyShapeStyle(.white.opacity(0.10)))
+            Circle()
+                .strokeBorder(
+                    LinearGradient(colors: [.white.opacity(selected ? 0 : 0.45), .white.opacity(0.05)],
+                                   startPoint: .topLeading, endPoint: .bottomTrailing),
+                    lineWidth: 0.8
+                )
+            Text(preset.label)
+                .font(.system(size: 20, weight: selected ? .semibold : .regular, design: .rounded))
+                .monospacedDigit()
+                .minimumScaleFactor(0.6)
+                .foregroundStyle(selected ? .black : .white)
+                .widgetAccentable()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .contentShape(Rectangle())
     }
 }
 
@@ -75,19 +136,13 @@ struct PresetButtons: View {
     var selected: Int?
 
     var body: some View {
-        Grid(horizontalSpacing: 6, verticalSpacing: 6) {
-            ForEach(Array(stride(from: 0, to: TimerPreset.allCases.count, by: columns)), id: \.self) { row in
+        let presets = TimerPreset.allCases
+        Grid(horizontalSpacing: 8, verticalSpacing: 8) {
+            ForEach(Array(stride(from: 0, to: presets.count, by: columns)), id: \.self) { row in
                 GridRow {
-                    ForEach(TimerPreset.allCases[row..<min(row + columns, TimerPreset.allCases.count)], id: \.self) { preset in
+                    ForEach(presets[row..<min(row + columns, presets.count)], id: \.self) { preset in
                         Button(intent: StartTimerIntent(preset: preset)) {
-                            Text(preset.label)
-                                .font(.system(.title3, design: .rounded).weight(.bold))
-                                .minimumScaleFactor(0.6)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .foregroundStyle(selected == preset.minutes ? .black : .white)
-                                .background(
-                                    Circle().fill(selected == preset.minutes ? TimerService.tint : Color.white.opacity(0.14))
-                                )
+                            GlassChip(preset: preset, selected: selected == preset.minutes)
                         }
                         .buttonStyle(.plain)
                     }
@@ -99,36 +154,44 @@ struct PresetButtons: View {
 
 struct RunningSummary: View {
     var timer: RunningTimer
+    var compact: Bool
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: compact ? 6 : 10) {
             HStack {
-                Text("\(timer.minutes)분").font(.caption.weight(.semibold)).foregroundStyle(TimerService.tint)
+                Text("\(timer.minutes)분")
+                    .font(Theme.caption)
+                    .tracking(2)
+                    .foregroundStyle(Theme.secondary)
                 Spacer()
                 Button(intent: StopTimerIntent(alarmID: timer.alarmID.uuidString)) {
-                    Image(systemName: "stop.fill").font(.caption)
+                    Image(systemName: "stop.fill")
+                        .font(.system(size: 10, weight: .bold))
+                        .frame(width: 26, height: 26)
+                        .background(Circle().fill(.white.opacity(0.14)))
+                        .overlay(Circle().strokeBorder(Theme.hairline, lineWidth: 0.6))
+                        .contentShape(Circle())
                 }
                 .buttonStyle(.plain)
-                .foregroundStyle(.red)
             }
+            Spacer(minLength: 0)
             Text(timerInterval: timer.interval, countsDown: true)
-                .font(.system(size: 40, weight: .bold, design: .rounded))
-                .monospacedDigit()
-                .minimumScaleFactor(0.5)
+                .font(Theme.number(compact ? 40 : 64))
                 .lineLimit(1)
+                .minimumScaleFactor(0.5)
+                .widgetAccentable()
+            ProgressView(timerInterval: timer.interval, countsDown: true) { EmptyView() } currentValueLabel: { EmptyView() }
+                .tint(.white)
             HStack(spacing: 4) {
                 Text("경과")
-                Text(timerInterval: timer.interval, countsDown: false).monospacedDigit()
+                Text(timerInterval: timer.interval, countsDown: false)
+                Spacer(minLength: 4)
+                Text("\(timer.endDate, style: .time)")
             }
-            .font(.caption)
-            .foregroundStyle(.secondary)
-            ProgressView(timerInterval: timer.interval, countsDown: true) { EmptyView() } currentValueLabel: { EmptyView() }
-                .tint(TimerService.tint)
-            Text("\(timer.endDate, style: .time) 종료")
-                .font(.caption2)
-                .foregroundStyle(.secondary)
+            .font(.system(size: 11, weight: .medium, design: .rounded).monospacedDigit())
+            .foregroundStyle(Theme.secondary)
+            .lineLimit(1)
         }
-        .foregroundStyle(.white)
     }
 }
 
@@ -150,7 +213,11 @@ struct TimerStatusView: View {
 
     var body: some View {
         if let timer = entry.timer {
-            Text(timerInterval: timer.interval, countsDown: true)
+            Label {
+                Text(timerInterval: timer.interval, countsDown: true)
+            } icon: {
+                Image(systemName: "timer")
+            }
         } else {
             Label("X-Timer", systemImage: "timer")
         }

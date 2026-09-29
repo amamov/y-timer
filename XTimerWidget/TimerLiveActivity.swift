@@ -9,33 +9,37 @@ struct TimerLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: AlarmAttributes<XTimerMetadata>.self) { context in
             LockScreenTimerView(minutes: context.attributes.metadata?.minutes, state: context.state)
-                .padding(20)
-                .activityBackgroundTint(.black.opacity(0.8))
-                .activitySystemActionForegroundColor(TimerService.tint)
+                .padding(.horizontal, 22)
+                .padding(.vertical, 18)
+                .activityBackgroundTint(.black.opacity(0.55))
+                .activitySystemActionForegroundColor(.white)
         } dynamicIsland: { context in
-            let minutes = context.attributes.metadata?.minutes
+            let minutes = context.attributes.metadata?.minutes ?? 0
             return DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
-                    Label("\(minutes ?? 0)분", systemImage: "timer")
-                        .font(.headline)
-                        .foregroundStyle(TimerService.tint)
+                    Text("\(minutes)분")
+                        .font(Theme.caption)
+                        .tracking(2)
+                        .foregroundStyle(Theme.secondary)
+                        .padding(.leading, 6)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
                     StopButton(alarmID: context.state.alarmID)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     TimerBody(state: context.state, large: false)
+                        .padding(.horizontal, 6)
                 }
             } compactLeading: {
-                Image(systemName: "timer").foregroundStyle(TimerService.tint)
+                ProgressRing(state: context.state)
             } compactTrailing: {
                 RemainingText(state: context.state)
-                    .frame(maxWidth: 56)
-                    .foregroundStyle(TimerService.tint)
+                    .font(.system(size: 15, weight: .semibold, design: .rounded).monospacedDigit())
+                    .frame(maxWidth: 52)
             } minimal: {
                 ProgressRing(state: context.state)
             }
-            .keylineTint(TimerService.tint)
+            .keylineTint(.white)
         }
     }
 }
@@ -50,11 +54,12 @@ struct LockScreenTimerView: View {
     var state: AlarmPresentationState
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Label("\(minutes ?? 0)분 타이머", systemImage: "timer")
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(TimerService.tint)
+                Text("X-TIMER · \(minutes ?? 0)분")
+                    .font(Theme.caption)
+                    .tracking(2)
+                    .foregroundStyle(Theme.secondary)
                 Spacer()
                 StopButton(alarmID: state.alarmID)
             }
@@ -72,34 +77,31 @@ struct TimerBody: View {
         switch state.mode {
         case .countdown(let countdown):
             let range = interval(countdown)
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(alignment: .firstTextBaseline) {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(alignment: .lastTextBaseline) {
                     Text(timerInterval: range, countsDown: true)
-                        .font(.system(size: large ? 52 : 40, weight: .bold, design: .rounded))
-                        .monospacedDigit()
-                    Spacer()
-                    VStack(alignment: .trailing, spacing: 2) {
+                        .font(Theme.number(large ? 58 : 44))
+                        .lineLimit(1)
+                    Spacer(minLength: 8)
+                    VStack(alignment: .trailing, spacing: 3) {
                         HStack(spacing: 4) {
                             Text("경과")
-                            Text(timerInterval: range, countsDown: false).monospacedDigit()
+                            Text(timerInterval: range, countsDown: false)
                         }
-                        HStack(spacing: 0) {
-                            Text(countdown.fireDate, style: .time)
-                            Text(" 종료")
-                        }
+                        Text("\(countdown.fireDate, style: .time) 종료")
                     }
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
+                    .font(.system(size: 12, weight: .medium, design: .rounded).monospacedDigit())
+                    .foregroundStyle(Theme.secondary)
                 }
                 ProgressView(timerInterval: range, countsDown: true) { EmptyView() } currentValueLabel: { EmptyView() }
-                    .tint(TimerService.tint)
+                    .tint(.white)
             }
         case .paused(let paused):
-            Text("일시정지 · \(Duration.seconds(paused.totalCountdownDuration - paused.previouslyElapsedDuration), format: .time(pattern: .minuteSecond)) 남음")
-                .font(.title2.weight(.bold))
+            Text("일시정지 · \(Duration.seconds(paused.totalCountdownDuration - paused.previouslyElapsedDuration).clock) 남음")
+                .font(.system(size: 22, weight: .light, design: .rounded))
         case .alert:
             Text("끝났습니다")
-                .font(.system(size: large ? 44 : 32, weight: .bold, design: .rounded))
+                .font(.system(size: large ? 40 : 30, weight: .light, design: .rounded))
         @unknown default:
             EmptyView()
         }
@@ -112,7 +114,6 @@ struct RemainingText: View {
     var body: some View {
         if case .countdown(let countdown) = state.mode {
             Text(timerInterval: interval(countdown), countsDown: true)
-                .monospacedDigit()
                 .multilineTextAlignment(.trailing)
         } else {
             Text("끝")
@@ -128,12 +129,12 @@ struct ProgressRing: View {
             ProgressView(timerInterval: interval(countdown), countsDown: true) {
                 EmptyView()
             } currentValueLabel: {
-                Image(systemName: "timer")
+                EmptyView()
             }
             .progressViewStyle(.circular)
-            .tint(TimerService.tint)
+            .tint(.white)
         } else {
-            Image(systemName: "bell.fill").foregroundStyle(TimerService.tint)
+            Image(systemName: "bell.fill").foregroundStyle(.white)
         }
     }
 }
@@ -144,10 +145,13 @@ struct StopButton: View {
     var body: some View {
         Button(intent: StopTimerIntent(alarmID: alarmID.uuidString)) {
             Image(systemName: "stop.fill")
-                .padding(10)
-                .background(Circle().fill(.red.opacity(0.9)))
+                .font(.system(size: 13, weight: .bold))
+                .foregroundStyle(.white)
+                .frame(width: 38, height: 38)
+                .background(Circle().fill(.white.opacity(0.16)))
+                .overlay(Circle().strokeBorder(Theme.hairline, lineWidth: 0.7))
+                .contentShape(Circle())
         }
         .buttonStyle(.plain)
-        .foregroundStyle(.white)
     }
 }

@@ -9,6 +9,13 @@ final class TimerStore {
     var errorMessage: String?
 
     init() {
+        #if DEBUG
+        // 시뮬레이터에서 도는 화면을 확인할 때만 쓴다: -demoRunning
+        if ProcessInfo.processInfo.arguments.contains("-demoRunning") {
+            current = RunningTimer(alarmID: UUID(), minutes: 15, startDate: .now.addingTimeInterval(-252), endDate: .now.addingTimeInterval(648))
+            return
+        }
+        #endif
         Task { await observeAlarms() }
     }
 
@@ -30,6 +37,9 @@ final class TimerStore {
     }
 
     func requestAuthorization() async {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-demoRunning") { return }
+        #endif
         _ = await TimerService.requestAuthorization()
     }
 

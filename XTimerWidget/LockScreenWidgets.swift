@@ -54,6 +54,10 @@ struct ConfiguredProvider<Config: WidgetConfigurationIntent>: AppIntentTimelineP
     }
 }
 
+// 잠금 화면에서는 버튼 label 을 눌러야만 인텐트가 돌고, 그 밖을 누르면 앱이 열린다.
+// 그래서 배경은 버튼 바깥에 두고 label 이 칸 전체를 채우게 한다.
+// 참고: https://github.com/home-assistant/iOS/pull/5647
+
 /// 잠금 화면 원형: 누르면 정해 둔 시간으로 바로 시작, 도는 동안은 남은 시간 링.
 struct LockPresetWidget: Widget {
     var body: some WidgetConfiguration {
@@ -63,7 +67,7 @@ struct LockPresetWidget: Widget {
                 .containerBackground(.clear, for: .widget)
         }
         .configurationDisplayName("X-Timer 바로 시작")
-        .description("잠금 화면에서 누르면 바로 시작합니다.")
+        .description("잠금 화면에서 누르면 잠금 해제 없이 바로 시작합니다.")
         .supportedFamilies([.accessoryCircular])
     }
 }
@@ -72,20 +76,24 @@ struct LockPresetView: View {
     var entry: ConfiguredEntry<LockPresetConfiguration>
 
     var body: some View {
-        if let timer = entry.timer {
-            RunningRing(timer: timer)
-        } else {
-            let preset = entry.configuration.preset
-            Button(intent: StartTimerIntent(preset: preset)) {
-                ZStack {
-                    AccessoryWidgetBackground()
-                    VStack(spacing: -2) {
-                        Text(preset.label).font(.system(.title2, design: .rounded).weight(.bold))
-                        Text("분").font(.caption2)
+        ZStack {
+            AccessoryWidgetBackground()
+            if let timer = entry.timer {
+                RunningRing(timer: timer)
+            } else {
+                let preset = entry.configuration.preset
+                Button(intent: StartTimerIntent(preset: preset)) {
+                    VStack(spacing: -3) {
+                        Text(preset.label)
+                            .font(.system(size: 24, weight: .semibold, design: .rounded))
+                            .minimumScaleFactor(0.6)
+                        Text("분").font(.system(size: 10, weight: .medium, design: .rounded))
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .contentShape(Circle())
                 }
+                .buttonStyle(.plain)
             }
-            .buttonStyle(.plain)
         }
     }
 }
@@ -99,7 +107,7 @@ struct LockRowWidget: Widget {
                 .containerBackground(.clear, for: .widget)
         }
         .configurationDisplayName("X-Timer 프리셋 세 개")
-        .description("잠금 화면에서 세 가지 시간 중 하나를 눌러 바로 시작합니다.")
+        .description("잠금 화면에서 세 가지 시간 중 하나를 눌러 잠금 해제 없이 바로 시작합니다.")
         .supportedFamilies([.accessoryRectangular])
     }
 }
@@ -109,28 +117,33 @@ struct LockRowView: View {
 
     var body: some View {
         if let timer = entry.timer {
-            HStack(spacing: 8) {
+            HStack(spacing: 10) {
                 RunningRing(timer: timer)
                 VStack(alignment: .leading, spacing: 0) {
                     Text(timerInterval: timer.interval, countsDown: true)
-                        .font(.system(.title3, design: .rounded).weight(.bold))
-                        .monospacedDigit()
-                    Text("\(timer.endDate, style: .time) 종료").font(.caption2)
+                        .font(.system(size: 26, weight: .semibold, design: .rounded).monospacedDigit())
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
+                    Text("\(timer.endDate, style: .time) 종료")
+                        .font(.system(size: 11, weight: .medium, design: .rounded))
+                        .opacity(0.7)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         } else {
             HStack(spacing: 6) {
                 ForEach(entry.configuration.row.presets, id: \.self) { preset in
-                    Button(intent: StartTimerIntent(preset: preset)) {
-                        ZStack {
-                            AccessoryWidgetBackground().clipShape(Circle())
+                    ZStack {
+                        AccessoryWidgetBackground().clipShape(Circle())
+                        Button(intent: StartTimerIntent(preset: preset)) {
                             Text(preset.label)
-                                .font(.system(.headline, design: .rounded).weight(.bold))
-                                .minimumScaleFactor(0.7)
+                                .font(.system(size: 20, weight: .semibold, design: .rounded))
+                                .minimumScaleFactor(0.6)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .contentShape(Rectangle())
                         }
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
                 }
             }
         }
@@ -145,6 +158,7 @@ struct RunningRing: View {
             EmptyView()
         } currentValueLabel: {
             Text("\(timer.minutes)")
+                .font(.system(size: 16, weight: .semibold, design: .rounded))
         }
         .progressViewStyle(.circular)
     }

@@ -12,8 +12,10 @@
 		2F0EB60470104C005ED5CB2B /* TimerPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485850C38246F4554969439E /* TimerPreset.swift */; };
 		3B360143A56804765D1BB624 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD828CD552D9B28CDB2AFE3 /* ContentView.swift */; };
 		59C919DD2EA3BBB4B73889C8 /* PresetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498FA1D87476E51951FDCF1 /* PresetWidget.swift */; };
+		702C2396350678E5373241AD /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049780783D303E841850F91 /* Theme.swift */; };
 		8EBD9C57EEA03858FF58089D /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56E356E7BF6D389DFE87A53 /* TimerService.swift */; };
 		96265C642BB63526ACDF080B /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56E356E7BF6D389DFE87A53 /* TimerService.swift */; };
+		9B10A1556CC789FB4804DF0B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049780783D303E841850F91 /* Theme.swift */; };
 		A4687F657E74DA799C169B6E /* XTimerWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE9C644A24CFE966C27C1E6 /* XTimerWidgetBundle.swift */; };
 		A6E6A391D0CDF6305713B23C /* TimerIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5B76AB164486ED266C0D1 /* TimerIntents.swift */; };
 		B690BA7183D2CEEA06180E4F /* TimerPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485850C38246F4554969439E /* TimerPreset.swift */; };
@@ -63,6 +65,7 @@
 		4C8A58241786883866191C61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4DA2F5A24E5774597C89BB9A /* XTimerWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XTimerWidget.entitlements; sourceTree = "<group>"; };
 		6F20004DC756C4EF37C59950 /* XTimer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = XTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7049780783D303E841850F91 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		9EE29945D0AB72ECFDDAF2C4 /* XTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTimerApp.swift; sourceTree = "<group>"; };
 		A9D165AB049F256097459197 /* LockScreenWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidgets.swift; sourceTree = "<group>"; };
 		BBA5B76AB164486ED266C0D1 /* TimerIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerIntents.swift; sourceTree = "<group>"; };
@@ -78,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				EDB70C14DE5F4F533C5FB42C /* RunningTimer.swift */,
+				7049780783D303E841850F91 /* Theme.swift */,
 				BBA5B76AB164486ED266C0D1 /* TimerIntents.swift */,
 				485850C38246F4554969439E /* TimerPreset.swift */,
 				C56E356E7BF6D389DFE87A53 /* TimerService.swift */,
@@ -228,6 +232,7 @@
 			files = (
 				3B360143A56804765D1BB624 /* ContentView.swift in Sources */,
 				D70E2E175FE0AD11AB75F55A /* RunningTimer.swift in Sources */,
+				702C2396350678E5373241AD /* Theme.swift in Sources */,
 				A6E6A391D0CDF6305713B23C /* TimerIntents.swift in Sources */,
 				B690BA7183D2CEEA06180E4F /* TimerPreset.swift in Sources */,
 				96265C642BB63526ACDF080B /* TimerService.swift in Sources */,
@@ -244,6 +249,7 @@
 				140DB2BB105E9344CC4D45EB /* PresetControl.swift in Sources */,
 				59C919DD2EA3BBB4B73889C8 /* PresetWidget.swift in Sources */,
 				E224CB9DFD3319D72E08459F /* RunningTimer.swift in Sources */,
+				9B10A1556CC789FB4804DF0B /* Theme.swift in Sources */,
 				F87C9E46C44188E5BE96DE60 /* TimerIntents.swift in Sources */,
 				E7D9CEBC35CE2083F802D5E7 /* TimerLiveActivity.swift in Sources */,
 				2F0EB60470104C005ED5CB2B /* TimerPreset.swift in Sources */,

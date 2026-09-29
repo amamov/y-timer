@@ -7,7 +7,7 @@ struct PresetControl: ControlWidget {
     var body: some ControlWidgetConfiguration {
         AppIntentControlConfiguration(kind: "PresetControl", intent: PresetControlConfiguration.self) { configuration in
             ControlWidgetButton(action: StartTimerIntent(preset: configuration.preset)) {
-                Label("\(configuration.preset.minutes)분", systemImage: "timer")
+                Label("\(configuration.preset.minutes)분 타이머", systemImage: "timer")
             }
         }
         .displayName("X-Timer 시작")
