@@ -2,10 +2,13 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(TimerStore.self) private var store
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     var body: some View {
         @Bindable var store = store
-        VStack(spacing: 32) {
+        // 가로(스탠바이 등)에서는 타이머와 프리셋을 나란히 둔다.
+        let layout = verticalSizeClass == .compact ? AnyLayout(HStackLayout(spacing: 32)) : AnyLayout(VStackLayout(spacing: 32))
+        layout {
             if let timer = store.current {
                 RunningView(timer: timer, onStop: store.stop)
             } else {
