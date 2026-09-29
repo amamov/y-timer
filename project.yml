@@ -44,6 +44,9 @@ targets:
         AppAuthor: $(APP_AUTHOR)
     dependencies:
       - target: YTimerWidget
+    scheme:
+      testTargets:
+        - YTimerUITests
   YTimerWidget:
     type: app-extension
     platform: iOS
@@ -64,3 +67,15 @@ targets:
         AppAuthor: $(APP_AUTHOR)
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
+  YTimerUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - YTimerUITests
+    dependencies:
+      - target: YTimer
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: YTimer
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).uitests

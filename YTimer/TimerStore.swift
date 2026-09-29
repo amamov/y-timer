@@ -36,6 +36,7 @@ final class TimerStore {
     }
 
     func start(duration: TimeInterval) {
+        Log.timer.info("app start tapped duration=\(duration, privacy: .public)")
         Task {
             do {
                 try await TimerService.start(duration: duration)

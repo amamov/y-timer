@@ -34,11 +34,12 @@ enum TimerService {
     }
 
     static func start(duration: TimeInterval) async throws {
+        let settings = AlarmSettings.current
+        Log.timer.info("start duration=\(duration, privacy: .public) sound=\(settings.soundFile ?? "default", privacy: .public) repeat=\(settings.offersRepeat, privacy: .public)")
         guard duration > 0 else { throw TimerServiceError.invalidDuration }
         guard await requestAuthorization() else { throw TimerServiceError.notAuthorized }
         cancelAll()
 
-        let settings = AlarmSettings.current
         let title = TimerFormat.title(duration)
         let repeatButton = settings.offersRepeat
             ? AlarmButton(text: "다시", textColor: .white, systemImageName: "arrow.clockwise")
@@ -58,16 +59,22 @@ enum TimerService {
 
         let id = UUID()
         let start = Date.now
-        _ = try await AlarmManager.shared.schedule(
-            id: id,
-            configuration: .timer(
-                duration: duration,
-                attributes: attributes,
-                stopIntent: StopTimerIntent(alarmID: id.uuidString),
-                secondaryIntent: repeatButton == nil ? nil : RepeatTimerIntent(duration: duration),
-                sound: settings.soundFile.map { .named($0) } ?? .default
+        do {
+            _ = try await AlarmManager.shared.schedule(
+                id: id,
+                configuration: .timer(
+                    duration: duration,
+                    attributes: attributes,
+                    stopIntent: StopTimerIntent(alarmID: id.uuidString),
+                    secondaryIntent: repeatButton == nil ? nil : RepeatTimerIntent(duration: duration),
+                    sound: settings.soundFile.map { .named($0) } ?? .default
+                )
             )
-        )
+        } catch {
+            Log.timer.error("schedule failed: \(String(describing: error), privacy: .public)")
+            throw error
+        }
+        Log.timer.info("scheduled \(id, privacy: .public)")
         RunningTimer.current = RunningTimer(
             alarmID: id,
             duration: duration,

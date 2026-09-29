@@ -12,9 +12,11 @@
 		08544A30A8DF06C4A18B066D /* TimerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3792DC6364924C58B8EFA1 /* TimerStore.swift */; };
 		196C0067A86ABEDA25D449C9 /* TimerIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7089EE835D94A3D678628A3 /* TimerIntents.swift */; };
 		1CA1DA15FE738A22F544697A /* LiveActivityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35FCCECA4F5DCD02C5E4CA4 /* LiveActivityViews.swift */; };
+		29209B02533AB8E26DBF3843 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F1308AD1E24CD4EFEE6A2 /* Log.swift */; };
 		29B3159504AB40BA0FF42F80 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E516DAA79BFAA2A6AD81D /* AppConfig.swift */; };
 		2E260941A3D4659E1D379AA1 /* digital.caf in Resources */ = {isa = PBXBuildFile; fileRef = B6E5CECB42C6EFA95CED7E65 /* digital.caf */; };
 		33F74435B78CAD1E4A016F10 /* YTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464231845B33D96694B5FF51 /* YTimerApp.swift */; };
+		44C81A5D49BA02CEA7742F20 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F1308AD1E24CD4EFEE6A2 /* Log.swift */; };
 		48E86349B0C1C994E9E20393 /* SharedDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEB1E9426006975005E355 /* SharedDefaults.swift */; };
 		5073EE64C3DEAD476333F3F0 /* pulse.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3193C062AECFFC71AD5FDF71 /* pulse.caf */; };
 		562B0F69A97EA6BBCA4F2493 /* HomeWidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E812D92579C6D440868CDD1 /* HomeWidgetViews.swift */; };
@@ -32,6 +34,7 @@
 		A5F74EC48C31C15E71FC8E9C /* rise.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F4745AAB3881A7C2E3CCC4D /* rise.caf */; };
 		A6D40DFAC382CB3B90EC248A /* TimerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BCF8E88642FB32A12F5133 /* TimerModels.swift */; };
 		B16DB2812B5F87854B15ECF7 /* DialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE9A94E816FEC276BEA099A /* DialView.swift */; };
+		B41B5AE5DA631746611028E1 /* TimerFlowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C9A9BAFE95F9FC5682E83 /* TimerFlowUITests.swift */; };
 		B45C0CF1B2B00791364DCFD4 /* TimerIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7089EE835D94A3D678628A3 /* TimerIntents.swift */; };
 		B80C832A2003735C335D547C /* HomeWidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E812D92579C6D440868CDD1 /* HomeWidgetViews.swift */; };
 		C0BE493487B4B8D278685894 /* PresetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7362F3715AA800F99CD25B5 /* PresetViews.swift */; };
@@ -59,6 +62,13 @@
 			remoteGlobalIDString = 84871EAF24082D1501B2BBC3;
 			remoteInfo = YTimerWidget;
 		};
+		91E5D24C7310BF6C80B9433F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3DB64A77FD1484F1B27AECF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 007089D60135D82A148CEC0F;
+			remoteInfo = YTimer;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,7 +89,9 @@
 		0BD183AC44C8BC06B5FCEB1E /* PresetControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetControl.swift; sourceTree = "<group>"; };
 		0F2E04216FCFB0AE99ACA37D /* LockScreenWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidgets.swift; sourceTree = "<group>"; };
 		12BEB1E9426006975005E355 /* SharedDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDefaults.swift; sourceTree = "<group>"; };
+		195F1308AD1E24CD4EFEE6A2 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		1E812D92579C6D440868CDD1 /* HomeWidgetViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWidgetViews.swift; sourceTree = "<group>"; };
+		269737641795F9A95728E8D4 /* YTimerUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = YTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29A0EE009DB59898FECBDA70 /* DurationWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationWheel.swift; sourceTree = "<group>"; };
 		2AE9A94E816FEC276BEA099A /* DialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialView.swift; sourceTree = "<group>"; };
 		2B299D86E4C7C5759ADA69AB /* glass.caf */ = {isa = PBXFileReference; path = glass.caf; sourceTree = "<group>"; };
@@ -97,6 +109,7 @@
 		74794B7C906C99F87AAB1B42 /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
 		75BCF8E88642FB32A12F5133 /* TimerModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModels.swift; sourceTree = "<group>"; };
 		77166D7F79ECBD2C6CCF6E08 /* bell.caf */ = {isa = PBXFileReference; path = bell.caf; sourceTree = "<group>"; };
+		7E5C9A9BAFE95F9FC5682E83 /* TimerFlowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFlowUITests.swift; sourceTree = "<group>"; };
 		94A1F7CF5A45C11EE5998615 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		964E516DAA79BFAA2A6AD81D /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		9790723297B9E064B4B8E890 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -148,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				964E516DAA79BFAA2A6AD81D /* AppConfig.swift */,
+				195F1308AD1E24CD4EFEE6A2 /* Log.swift */,
 				12BEB1E9426006975005E355 /* SharedDefaults.swift */,
 				E22B2B64E133D6D807DC0618 /* Theme.swift */,
 				C7089EE835D94A3D678628A3 /* TimerIntents.swift */,
@@ -163,6 +177,7 @@
 			children = (
 				8B442E2167C5921864B3602A /* Shared */,
 				F7CE4228AE9EAB65A64621E5 /* YTimer */,
+				D4A0070B573D3DF435B2E429 /* YTimerUITests */,
 				6B8214372F79CE385191C87B /* YTimerWidget */,
 				EC366AB6739B08F10F2E583F /* Products */,
 			);
@@ -179,6 +194,14 @@
 			path = WidgetUI;
 			sourceTree = "<group>";
 		};
+		D4A0070B573D3DF435B2E429 /* YTimerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7E5C9A9BAFE95F9FC5682E83 /* TimerFlowUITests.swift */,
+			);
+			path = YTimerUITests;
+			sourceTree = "<group>";
+		};
 		E311E2487362A51D13D271BD /* Debug */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				D8D6EC7C4B2A148EF0D62C26 /* YTimer.app */,
+				269737641795F9A95728E8D4 /* YTimerUITests.xctest */,
 				58D12885688B758936694E68 /* YTimerWidget.appex */,
 			);
 			name = Products;
@@ -238,6 +262,24 @@
 			productReference = D8D6EC7C4B2A148EF0D62C26 /* YTimer.app */;
 			productType = "com.apple.product-type.application";
 		};
+		53038586786FBC8662482D66 /* YTimerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63310D5DC14998EEB132E30F /* Build configuration list for PBXNativeTarget "YTimerUITests" */;
+			buildPhases = (
+				DB4B69C93BD7477B572E2300 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				57E466A691C59BC6FCAE9C8D /* PBXTargetDependency */,
+			);
+			name = YTimerUITests;
+			packageProductDependencies = (
+			);
+			productName = YTimerUITests;
+			productReference = 269737641795F9A95728E8D4 /* YTimerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		84871EAF24082D1501B2BBC3 /* YTimerWidget */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5CE6A6549BA488B3E4E6D82 /* Build configuration list for PBXNativeTarget "YTimerWidget" */;
@@ -268,6 +310,11 @@
 						DevelopmentTeam = Z2G2F57LWN;
 						ProvisioningStyle = Automatic;
 					};
+					53038586786FBC8662482D66 = {
+						DevelopmentTeam = Z2G2F57LWN;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 007089D60135D82A148CEC0F;
+					};
 					84871EAF24082D1501B2BBC3 = {
 						DevelopmentTeam = Z2G2F57LWN;
 						ProvisioningStyle = Automatic;
@@ -290,6 +337,7 @@
 			targets = (
 				007089D60135D82A148CEC0F /* YTimer */,
 				84871EAF24082D1501B2BBC3 /* YTimerWidget */,
+				53038586786FBC8662482D66 /* YTimerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -322,6 +370,7 @@
 				1CA1DA15FE738A22F544697A /* LiveActivityViews.swift in Sources */,
 				C1E0C151DA9D4A179417CFF9 /* LockScreenWidgets.swift in Sources */,
 				EA5701E580C55F674843DDA7 /* LockWidgetViews.swift in Sources */,
+				29209B02533AB8E26DBF3843 /* Log.swift in Sources */,
 				EEB5BF08AF8058124155ED94 /* PresetControl.swift in Sources */,
 				F79D76E804A85BBB98B01AB4 /* PresetWidget.swift in Sources */,
 				F074B0DA5C1664E6E65C5350 /* SharedDefaults.swift in Sources */,
@@ -332,6 +381,14 @@
 				C33FA072345898AE51F92F27 /* TimerService.swift in Sources */,
 				ECF124914397B9E04917D56D /* WidgetParts.swift in Sources */,
 				E555EBC03AE44CC1C2146A96 /* YTimerWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB4B69C93BD7477B572E2300 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B41B5AE5DA631746611028E1 /* TimerFlowUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +403,7 @@
 				B80C832A2003735C335D547C /* HomeWidgetViews.swift in Sources */,
 				9A9E8722D79E41AE7F2A61A1 /* LiveActivityViews.swift in Sources */,
 				0004D76791BA4F99088C60F2 /* LockWidgetViews.swift in Sources */,
+				44C81A5D49BA02CEA7742F20 /* Log.swift in Sources */,
 				C0BE493487B4B8D278685894 /* PresetViews.swift in Sources */,
 				019025467F63317F23C2E1DC /* SettingsView.swift in Sources */,
 				48E86349B0C1C994E9E20393 /* SharedDefaults.swift in Sources */,
@@ -368,9 +426,31 @@
 			target = 84871EAF24082D1501B2BBC3 /* YTimerWidget */;
 			targetProxy = 7BE3202D7904A507BED5BAE8 /* PBXContainerItemProxy */;
 		};
+		57E466A691C59BC6FCAE9C8D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 007089D60135D82A148CEC0F /* YTimer */;
+			targetProxy = 91E5D24C7310BF6C80B9433F /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0D15C3D85D868147AAA09B0B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID).uitests";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = YTimer;
+			};
+			name = Release;
+		};
 		167B1305335E6E319BAADDC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -391,6 +471,23 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3D0A3F7D63A3DEF7D323C55E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID).uitests";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = YTimer;
 			};
 			name = Debug;
 		};
@@ -600,6 +697,15 @@
 			buildConfigurations = (
 				167B1305335E6E319BAADDC0 /* Debug */,
 				8D1224631301D86EAE696C64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		63310D5DC14998EEB132E30F /* Build configuration list for PBXNativeTarget "YTimerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D0A3F7D63A3DEF7D323C55E /* Debug */,
+				0D15C3D85D868147AAA09B0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
