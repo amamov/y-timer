@@ -19,6 +19,7 @@ i=0
 while hw=$(plutil -extract "result.devices.$i.hardwareProperties" json -o - "$JSON" 2>/dev/null); do
   if [[ $hw == *"\"reality\":\"physical\""* && $hw == *"\"platform\":\"iOS\""* ]]; then
     DEVICE=$(plutil -extract "result.devices.$i.hardwareProperties.udid" raw "$JSON")
+    DEV_MODE=$(plutil -extract "result.devices.$i.deviceProperties.developerModeStatus" raw "$JSON" 2>/dev/null || echo unknown)
     break
   fi
   i=$((i + 1))
@@ -26,6 +27,10 @@ done
 
 if [[ -z "$DEVICE" ]]; then
   echo "연결된 아이폰이 없습니다. 케이블로 연결하고 폰에서 '이 컴퓨터 신뢰'를 누른 뒤 다시 실행하세요."
+  exit 1
+fi
+if [[ $DEV_MODE == disabled ]]; then
+  echo "폰의 개발자 모드가 꺼져 있습니다. 설정 > 개인정보 보호 및 보안 > 개발자 모드를 켜고, 재시작 후 뜨는 창에서 켬을 누른 뒤 다시 실행하세요."
   exit 1
 fi
 echo "설치할 기기: $DEVICE"
