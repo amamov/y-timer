@@ -1,0 +1,489 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0D628181E47670E1037116B2 /* TimerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356A49576B8C26823A3B6895 /* TimerStore.swift */; };
+		140DB2BB105E9344CC4D45EB /* PresetControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112F22119020D8F0B2E17E28 /* PresetControl.swift */; };
+		2F0EB60470104C005ED5CB2B /* TimerPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485850C38246F4554969439E /* TimerPreset.swift */; };
+		3B360143A56804765D1BB624 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD828CD552D9B28CDB2AFE3 /* ContentView.swift */; };
+		59C919DD2EA3BBB4B73889C8 /* PresetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498FA1D87476E51951FDCF1 /* PresetWidget.swift */; };
+		8EBD9C57EEA03858FF58089D /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56E356E7BF6D389DFE87A53 /* TimerService.swift */; };
+		96265C642BB63526ACDF080B /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56E356E7BF6D389DFE87A53 /* TimerService.swift */; };
+		A4687F657E74DA799C169B6E /* XTimerWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE9C644A24CFE966C27C1E6 /* XTimerWidgetBundle.swift */; };
+		A6E6A391D0CDF6305713B23C /* TimerIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5B76AB164486ED266C0D1 /* TimerIntents.swift */; };
+		B690BA7183D2CEEA06180E4F /* TimerPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485850C38246F4554969439E /* TimerPreset.swift */; };
+		CAD139560202C76193A0A328 /* XTimerWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E43D496D41CC1C152F83EEE4 /* XTimerWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D70E2E175FE0AD11AB75F55A /* RunningTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB70C14DE5F4F533C5FB42C /* RunningTimer.swift */; };
+		E224CB9DFD3319D72E08459F /* RunningTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB70C14DE5F4F533C5FB42C /* RunningTimer.swift */; };
+		E7D9CEBC35CE2083F802D5E7 /* TimerLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1635D0326F1404794408D289 /* TimerLiveActivity.swift */; };
+		F5E2DB0C4E7AA7F00A0BD751 /* XTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE29945D0AB72ECFDDAF2C4 /* XTimerApp.swift */; };
+		F87C9E46C44188E5BE96DE60 /* TimerIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5B76AB164486ED266C0D1 /* TimerIntents.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6FCC7C76634BC052FD22EEC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0268663B2C0B0BF28C3F6ADE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C2093A41B0B0D94B075C8E31;
+			remoteInfo = XTimerWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A6477126C69C4B82B3455173 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CAD139560202C76193A0A328 /* XTimerWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0CE9C644A24CFE966C27C1E6 /* XTimerWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTimerWidgetBundle.swift; sourceTree = "<group>"; };
+		112F22119020D8F0B2E17E28 /* PresetControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetControl.swift; sourceTree = "<group>"; };
+		1635D0326F1404794408D289 /* TimerLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLiveActivity.swift; sourceTree = "<group>"; };
+		2498FA1D87476E51951FDCF1 /* PresetWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetWidget.swift; sourceTree = "<group>"; };
+		33284B931B721296729303F9 /* XTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XTimer.entitlements; sourceTree = "<group>"; };
+		356A49576B8C26823A3B6895 /* TimerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStore.swift; sourceTree = "<group>"; };
+		485850C38246F4554969439E /* TimerPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPreset.swift; sourceTree = "<group>"; };
+		4DA2F5A24E5774597C89BB9A /* XTimerWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XTimerWidget.entitlements; sourceTree = "<group>"; };
+		6F20004DC756C4EF37C59950 /* XTimer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = XTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EE29945D0AB72ECFDDAF2C4 /* XTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTimerApp.swift; sourceTree = "<group>"; };
+		BBA5B76AB164486ED266C0D1 /* TimerIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerIntents.swift; sourceTree = "<group>"; };
+		C56E356E7BF6D389DFE87A53 /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
+		D359068C76C046B1B373E0F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E43D496D41CC1C152F83EEE4 /* XTimerWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = XTimerWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDB70C14DE5F4F533C5FB42C /* RunningTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimer.swift; sourceTree = "<group>"; };
+		EFD828CD552D9B28CDB2AFE3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0BB0910B766D039F2E09BF40 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				EDB70C14DE5F4F533C5FB42C /* RunningTimer.swift */,
+				BBA5B76AB164486ED266C0D1 /* TimerIntents.swift */,
+				485850C38246F4554969439E /* TimerPreset.swift */,
+				C56E356E7BF6D389DFE87A53 /* TimerService.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		19E921F81CA0FDFEA9BEFFD8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6F20004DC756C4EF37C59950 /* XTimer.app */,
+				E43D496D41CC1C152F83EEE4 /* XTimerWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		51E591C65BF8335052C80EAF /* XTimerWidget */ = {
+			isa = PBXGroup;
+			children = (
+				D359068C76C046B1B373E0F1 /* Info.plist */,
+				112F22119020D8F0B2E17E28 /* PresetControl.swift */,
+				2498FA1D87476E51951FDCF1 /* PresetWidget.swift */,
+				1635D0326F1404794408D289 /* TimerLiveActivity.swift */,
+				4DA2F5A24E5774597C89BB9A /* XTimerWidget.entitlements */,
+				0CE9C644A24CFE966C27C1E6 /* XTimerWidgetBundle.swift */,
+			);
+			path = XTimerWidget;
+			sourceTree = "<group>";
+		};
+		AAC39AD68535541D5A3897E9 = {
+			isa = PBXGroup;
+			children = (
+				0BB0910B766D039F2E09BF40 /* Shared */,
+				CD1577D799A431FC86CBBD3D /* XTimer */,
+				51E591C65BF8335052C80EAF /* XTimerWidget */,
+				19E921F81CA0FDFEA9BEFFD8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CD1577D799A431FC86CBBD3D /* XTimer */ = {
+			isa = PBXGroup;
+			children = (
+				EFD828CD552D9B28CDB2AFE3 /* ContentView.swift */,
+				356A49576B8C26823A3B6895 /* TimerStore.swift */,
+				33284B931B721296729303F9 /* XTimer.entitlements */,
+				9EE29945D0AB72ECFDDAF2C4 /* XTimerApp.swift */,
+			);
+			path = XTimer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		89C1979235F400264249DAAA /* XTimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DEA42A5B06B01355E8298ACB /* Build configuration list for PBXNativeTarget "XTimer" */;
+			buildPhases = (
+				0550BDE19B560FE8769B1366 /* Sources */,
+				A6477126C69C4B82B3455173 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E06832837625C9E5E34DCA68 /* PBXTargetDependency */,
+			);
+			name = XTimer;
+			packageProductDependencies = (
+			);
+			productName = XTimer;
+			productReference = 6F20004DC756C4EF37C59950 /* XTimer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C2093A41B0B0D94B075C8E31 /* XTimerWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 39F790501BF2ABD68ED2A78C /* Build configuration list for PBXNativeTarget "XTimerWidget" */;
+			buildPhases = (
+				66CD9645ADD117D8FF89F976 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XTimerWidget;
+			packageProductDependencies = (
+			);
+			productName = XTimerWidget;
+			productReference = E43D496D41CC1C152F83EEE4 /* XTimerWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0268663B2C0B0BF28C3F6ADE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					89C1979235F400264249DAAA = {
+						DevelopmentTeam = Z2G2F57LWN;
+						ProvisioningStyle = Automatic;
+					};
+					C2093A41B0B0D94B075C8E31 = {
+						DevelopmentTeam = Z2G2F57LWN;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = DAB7354F2D11DA2F2353F8B2 /* Build configuration list for PBXProject "XTimer" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = AAC39AD68535541D5A3897E9;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 19E921F81CA0FDFEA9BEFFD8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				89C1979235F400264249DAAA /* XTimer */,
+				C2093A41B0B0D94B075C8E31 /* XTimerWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0550BDE19B560FE8769B1366 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B360143A56804765D1BB624 /* ContentView.swift in Sources */,
+				D70E2E175FE0AD11AB75F55A /* RunningTimer.swift in Sources */,
+				A6E6A391D0CDF6305713B23C /* TimerIntents.swift in Sources */,
+				B690BA7183D2CEEA06180E4F /* TimerPreset.swift in Sources */,
+				96265C642BB63526ACDF080B /* TimerService.swift in Sources */,
+				0D628181E47670E1037116B2 /* TimerStore.swift in Sources */,
+				F5E2DB0C4E7AA7F00A0BD751 /* XTimerApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66CD9645ADD117D8FF89F976 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				140DB2BB105E9344CC4D45EB /* PresetControl.swift in Sources */,
+				59C919DD2EA3BBB4B73889C8 /* PresetWidget.swift in Sources */,
+				E224CB9DFD3319D72E08459F /* RunningTimer.swift in Sources */,
+				F87C9E46C44188E5BE96DE60 /* TimerIntents.swift in Sources */,
+				E7D9CEBC35CE2083F802D5E7 /* TimerLiveActivity.swift in Sources */,
+				2F0EB60470104C005ED5CB2B /* TimerPreset.swift in Sources */,
+				8EBD9C57EEA03858FF58089D /* TimerService.swift in Sources */,
+				A4687F657E74DA799C169B6E /* XTimerWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E06832837625C9E5E34DCA68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C2093A41B0B0D94B075C8E31 /* XTimerWidget */;
+			targetProxy = 6FCC7C76634BC052FD22EEC3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1BAD2711D508F805300F19D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = XTimerWidget/XTimerWidget.entitlements;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = XTimerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "X-Timer";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.amamov.xtimer.widget;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		20F46B184192C91C8BAE3E84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = XTimer/XTimer.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "X-Timer";
+				INFOPLIST_KEY_NSAlarmKitUsageDescription = "타이머가 끝나면 무음 모드에서도 알람을 울리기 위해 필요합니다.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.amamov.xtimer;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		882A3BA19465F6B47DC9CFFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = XTimerWidget/XTimerWidget.entitlements;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = XTimerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "X-Timer";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.amamov.xtimer.widget;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AF652C568336DA2A28485D79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Z2G2F57LWN;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		C7BD4307B4847400417D4669 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = XTimer/XTimer.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "X-Timer";
+				INFOPLIST_KEY_NSAlarmKitUsageDescription = "타이머가 끝나면 무음 모드에서도 알람을 울리기 위해 필요합니다.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.amamov.xtimer;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D98050CFAEF2EC94E39438DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Z2G2F57LWN;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		39F790501BF2ABD68ED2A78C /* Build configuration list for PBXNativeTarget "XTimerWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BAD2711D508F805300F19D7 /* Debug */,
+				882A3BA19465F6B47DC9CFFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DAB7354F2D11DA2F2353F8B2 /* Build configuration list for PBXProject "XTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF652C568336DA2A28485D79 /* Debug */,
+				D98050CFAEF2EC94E39438DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DEA42A5B06B01355E8298ACB /* Build configuration list for PBXNativeTarget "XTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20F46B184192C91C8BAE3E84 /* Debug */,
+				C7BD4307B4847400417D4669 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0268663B2C0B0BF28C3F6ADE /* Project object */;
+}

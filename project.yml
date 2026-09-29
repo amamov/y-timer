@@ -1,0 +1,51 @@
+name: XTimer
+options:
+  bundleIdPrefix: com.amamov
+  deploymentTarget:
+    iOS: "26.1"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: Z2G2F57LWN
+    CODE_SIGN_STYLE: Automatic
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    TARGETED_DEVICE_FAMILY: "1"
+targets:
+  XTimer:
+    type: application
+    platform: iOS
+    sources:
+      - XTimer
+      - Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.amamov.xtimer
+        CODE_SIGN_ENTITLEMENTS: XTimer/XTimer.entitlements
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: X-Timer
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_NSSupportsLiveActivities: YES
+        INFOPLIST_KEY_NSAlarmKitUsageDescription: "타이머가 끝나면 무음 모드에서도 알람을 울리기 위해 필요합니다."
+    dependencies:
+      - target: XTimerWidget
+  XTimerWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - XTimerWidget
+      - Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.amamov.xtimer.widget
+        CODE_SIGN_ENTITLEMENTS: XTimerWidget/XTimerWidget.entitlements
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: X-Timer
+        INFOPLIST_KEY_NSSupportsLiveActivities: YES
+    info:
+      path: XTimerWidget/Info.plist
+      properties:
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension

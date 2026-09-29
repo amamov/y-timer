@@ -1,0 +1,9 @@
+.DS_Store
+build/
+DerivedData/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+_outputs/
+_attachments/
+.fsw/
+.claude/
