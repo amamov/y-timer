@@ -6,20 +6,20 @@ import WidgetKit
 struct PresetControl: ControlWidget {
     var body: some ControlWidgetConfiguration {
         AppIntentControlConfiguration(kind: "PresetControl", intent: PresetControlConfiguration.self) { configuration in
-            ControlWidgetButton(action: StartTimerIntent(preset: configuration.preset)) {
-                Label("\(configuration.preset.minutes)분 타이머", systemImage: "timer")
+            ControlWidgetButton(action: StartTimerIntent(minutes: configuration.minutes)) {
+                Label(TimerFormat.title(TimerFormat.seconds(minutes: configuration.minutes)), systemImage: "timer")
             }
         }
-        .displayName("X-Timer 시작")
-        .description("정한 시간으로 바로 타이머를 시작합니다.")
+        .displayName("\(AppConfig.displayName) 시작")
+        .description("정한 분만큼 바로 타이머를 시작합니다.")
     }
 }
 
 struct PresetControlConfiguration: ControlConfigurationIntent {
-    static let title: LocalizedStringResource = "X-Timer 시간"
+    static let title: LocalizedStringResource = "타이머 시간"
 
-    @Parameter(title: "시간", default: .m10)
-    var preset: TimerPreset
+    @Parameter(title: "분", default: 10, inclusiveRange: (1, 999))
+    var minutes: Int
 
     func perform() async throws -> some IntentResult { .result() }
 }

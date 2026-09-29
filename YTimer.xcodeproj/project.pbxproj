@@ -1,0 +1,584 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		019025467F63317F23C2E1DC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343A0751CA839725ADD1DBA3 /* SettingsView.swift */; };
+		08544A30A8DF06C4A18B066D /* TimerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3792DC6364924C58B8EFA1 /* TimerStore.swift */; };
+		196C0067A86ABEDA25D449C9 /* TimerIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7089EE835D94A3D678628A3 /* TimerIntents.swift */; };
+		29B3159504AB40BA0FF42F80 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E516DAA79BFAA2A6AD81D /* AppConfig.swift */; };
+		2E260941A3D4659E1D379AA1 /* digital.caf in Resources */ = {isa = PBXBuildFile; fileRef = B6E5CECB42C6EFA95CED7E65 /* digital.caf */; };
+		33F74435B78CAD1E4A016F10 /* YTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464231845B33D96694B5FF51 /* YTimerApp.swift */; };
+		48E86349B0C1C994E9E20393 /* SharedDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEB1E9426006975005E355 /* SharedDefaults.swift */; };
+		5073EE64C3DEAD476333F3F0 /* pulse.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3193C062AECFFC71AD5FDF71 /* pulse.caf */; };
+		592BA817BB2DB6A319059B85 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74794B7C906C99F87AAB1B42 /* TimerService.swift */; };
+		59653D8C455E7F29286E40A0 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E516DAA79BFAA2A6AD81D /* AppConfig.swift */; };
+		6AEB984DBAA76F85DA5A662E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B2B64E133D6D807DC0618 /* Theme.swift */; };
+		7E934D580544A06336BF39EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94A1F7CF5A45C11EE5998615 /* Assets.xcassets */; };
+		82BA889229FEE707E4F94B61 /* DurationWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0EE009DB59898FECBDA70 /* DurationWheel.swift */; };
+		8BD4035EB1A716E31042062F /* bell.caf in Resources */ = {isa = PBXBuildFile; fileRef = 77166D7F79ECBD2C6CCF6E08 /* bell.caf */; };
+		A41A48E6B515E2449BE5EED7 /* silent.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB719F58F792DEFE5D288075 /* silent.caf */; };
+		A4B338775044FC7CF30B8508 /* TimerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BCF8E88642FB32A12F5133 /* TimerModels.swift */; };
+		A5F74EC48C31C15E71FC8E9C /* rise.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F4745AAB3881A7C2E3CCC4D /* rise.caf */; };
+		A6D40DFAC382CB3B90EC248A /* TimerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BCF8E88642FB32A12F5133 /* TimerModels.swift */; };
+		B16DB2812B5F87854B15ECF7 /* DialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE9A94E816FEC276BEA099A /* DialView.swift */; };
+		B45C0CF1B2B00791364DCFD4 /* TimerIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7089EE835D94A3D678628A3 /* TimerIntents.swift */; };
+		C0BE493487B4B8D278685894 /* PresetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7362F3715AA800F99CD25B5 /* PresetViews.swift */; };
+		C1E0C151DA9D4A179417CFF9 /* LockScreenWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2E04216FCFB0AE99ACA37D /* LockScreenWidgets.swift */; };
+		C33FA072345898AE51F92F27 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74794B7C906C99F87AAB1B42 /* TimerService.swift */; };
+		CD666D38DCE3514484D3642B /* TimerLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B3CD57309133C9CB5B7535 /* TimerLiveActivity.swift */; };
+		D6AB8DE23DFABC894B5C836D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E9A4244C3FACA0756C1AEB /* ContentView.swift */; };
+		DADF7AB907782F43AE560F93 /* sounds.json in Resources */ = {isa = PBXBuildFile; fileRef = F902DCC84A6DB8CC9BD49E67 /* sounds.json */; };
+		E555EBC03AE44CC1C2146A96 /* YTimerWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E2467B4ECC5E9D523BB7E2 /* YTimerWidgetBundle.swift */; };
+		E6064F01E3BBAACFFEA266D4 /* glass.caf in Resources */ = {isa = PBXBuildFile; fileRef = 2B299D86E4C7C5759ADA69AB /* glass.caf */; };
+		EEB5BF08AF8058124155ED94 /* PresetControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD183AC44C8BC06B5FCEB1E /* PresetControl.swift */; };
+		F074B0DA5C1664E6E65C5350 /* SharedDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEB1E9426006975005E355 /* SharedDefaults.swift */; };
+		F08427FA9EC304D72749BFDB /* YTimerWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 58D12885688B758936694E68 /* YTimerWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F79D76E804A85BBB98B01AB4 /* PresetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2D20C2B05CDA2A99924DB8 /* PresetWidget.swift */; };
+		FD20EC362BEAB46EAB43D065 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B2B64E133D6D807DC0618 /* Theme.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7BE3202D7904A507BED5BAE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3DB64A77FD1484F1B27AECF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84871EAF24082D1501B2BBC3;
+			remoteInfo = YTimerWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F62F2952E797681A2F6CC8E2 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F08427FA9EC304D72749BFDB /* YTimerWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0BD183AC44C8BC06B5FCEB1E /* PresetControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetControl.swift; sourceTree = "<group>"; };
+		0F2E04216FCFB0AE99ACA37D /* LockScreenWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidgets.swift; sourceTree = "<group>"; };
+		12BEB1E9426006975005E355 /* SharedDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDefaults.swift; sourceTree = "<group>"; };
+		29A0EE009DB59898FECBDA70 /* DurationWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationWheel.swift; sourceTree = "<group>"; };
+		2AE9A94E816FEC276BEA099A /* DialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialView.swift; sourceTree = "<group>"; };
+		2B299D86E4C7C5759ADA69AB /* glass.caf */ = {isa = PBXFileReference; path = glass.caf; sourceTree = "<group>"; };
+		3193C062AECFFC71AD5FDF71 /* pulse.caf */ = {isa = PBXFileReference; path = pulse.caf; sourceTree = "<group>"; };
+		343A0751CA839725ADD1DBA3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		35FED46673FC60969F169029 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3F4745AAB3881A7C2E3CCC4D /* rise.caf */ = {isa = PBXFileReference; path = rise.caf; sourceTree = "<group>"; };
+		464231845B33D96694B5FF51 /* YTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTimerApp.swift; sourceTree = "<group>"; };
+		47B3CD57309133C9CB5B7535 /* TimerLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLiveActivity.swift; sourceTree = "<group>"; };
+		4F139B82708A772BD50E2AE5 /* YTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YTimer.entitlements; sourceTree = "<group>"; };
+		58D12885688B758936694E68 /* YTimerWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = YTimerWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		687487E599A13397A3339654 /* YTimerWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YTimerWidget.entitlements; sourceTree = "<group>"; };
+		74794B7C906C99F87AAB1B42 /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
+		75BCF8E88642FB32A12F5133 /* TimerModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModels.swift; sourceTree = "<group>"; };
+		77166D7F79ECBD2C6CCF6E08 /* bell.caf */ = {isa = PBXFileReference; path = bell.caf; sourceTree = "<group>"; };
+		94A1F7CF5A45C11EE5998615 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		964E516DAA79BFAA2A6AD81D /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		9790723297B9E064B4B8E890 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9E3792DC6364924C58B8EFA1 /* TimerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStore.swift; sourceTree = "<group>"; };
+		A7E9A4244C3FACA0756C1AEB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B6E5CECB42C6EFA95CED7E65 /* digital.caf */ = {isa = PBXFileReference; path = digital.caf; sourceTree = "<group>"; };
+		C7089EE835D94A3D678628A3 /* TimerIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerIntents.swift; sourceTree = "<group>"; };
+		D8D6EC7C4B2A148EF0D62C26 /* YTimer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = YTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD2D20C2B05CDA2A99924DB8 /* PresetWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetWidget.swift; sourceTree = "<group>"; };
+		E22B2B64E133D6D807DC0618 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		E7362F3715AA800F99CD25B5 /* PresetViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetViews.swift; sourceTree = "<group>"; };
+		EB719F58F792DEFE5D288075 /* silent.caf */ = {isa = PBXFileReference; path = silent.caf; sourceTree = "<group>"; };
+		F7E2467B4ECC5E9D523BB7E2 /* YTimerWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTimerWidgetBundle.swift; sourceTree = "<group>"; };
+		F902DCC84A6DB8CC9BD49E67 /* sounds.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sounds.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		6B8214372F79CE385191C87B /* YTimerWidget */ = {
+			isa = PBXGroup;
+			children = (
+				9790723297B9E064B4B8E890 /* Info.plist */,
+				0F2E04216FCFB0AE99ACA37D /* LockScreenWidgets.swift */,
+				0BD183AC44C8BC06B5FCEB1E /* PresetControl.swift */,
+				DD2D20C2B05CDA2A99924DB8 /* PresetWidget.swift */,
+				47B3CD57309133C9CB5B7535 /* TimerLiveActivity.swift */,
+				687487E599A13397A3339654 /* YTimerWidget.entitlements */,
+				F7E2467B4ECC5E9D523BB7E2 /* YTimerWidgetBundle.swift */,
+			);
+			path = YTimerWidget;
+			sourceTree = "<group>";
+		};
+		81B81E3C2B3C5E0FA86FB518 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				77166D7F79ECBD2C6CCF6E08 /* bell.caf */,
+				B6E5CECB42C6EFA95CED7E65 /* digital.caf */,
+				2B299D86E4C7C5759ADA69AB /* glass.caf */,
+				3193C062AECFFC71AD5FDF71 /* pulse.caf */,
+				3F4745AAB3881A7C2E3CCC4D /* rise.caf */,
+				EB719F58F792DEFE5D288075 /* silent.caf */,
+				F902DCC84A6DB8CC9BD49E67 /* sounds.json */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		8B442E2167C5921864B3602A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				964E516DAA79BFAA2A6AD81D /* AppConfig.swift */,
+				12BEB1E9426006975005E355 /* SharedDefaults.swift */,
+				E22B2B64E133D6D807DC0618 /* Theme.swift */,
+				C7089EE835D94A3D678628A3 /* TimerIntents.swift */,
+				75BCF8E88642FB32A12F5133 /* TimerModels.swift */,
+				74794B7C906C99F87AAB1B42 /* TimerService.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		8E2F967AE63211B73844DBFA = {
+			isa = PBXGroup;
+			children = (
+				8B442E2167C5921864B3602A /* Shared */,
+				F7CE4228AE9EAB65A64621E5 /* YTimer */,
+				6B8214372F79CE385191C87B /* YTimerWidget */,
+				EC366AB6739B08F10F2E583F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EC366AB6739B08F10F2E583F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D8D6EC7C4B2A148EF0D62C26 /* YTimer.app */,
+				58D12885688B758936694E68 /* YTimerWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F7CE4228AE9EAB65A64621E5 /* YTimer */ = {
+			isa = PBXGroup;
+			children = (
+				94A1F7CF5A45C11EE5998615 /* Assets.xcassets */,
+				A7E9A4244C3FACA0756C1AEB /* ContentView.swift */,
+				2AE9A94E816FEC276BEA099A /* DialView.swift */,
+				29A0EE009DB59898FECBDA70 /* DurationWheel.swift */,
+				35FED46673FC60969F169029 /* Info.plist */,
+				E7362F3715AA800F99CD25B5 /* PresetViews.swift */,
+				343A0751CA839725ADD1DBA3 /* SettingsView.swift */,
+				9E3792DC6364924C58B8EFA1 /* TimerStore.swift */,
+				4F139B82708A772BD50E2AE5 /* YTimer.entitlements */,
+				464231845B33D96694B5FF51 /* YTimerApp.swift */,
+				81B81E3C2B3C5E0FA86FB518 /* Sounds */,
+			);
+			path = YTimer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		007089D60135D82A148CEC0F /* YTimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DC80F6CB134A997F7D8EA84 /* Build configuration list for PBXNativeTarget "YTimer" */;
+			buildPhases = (
+				F5623491CBB18E76086C34DF /* Sources */,
+				501E6D697AAE07A8F3489290 /* Resources */,
+				F62F2952E797681A2F6CC8E2 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2F50D350F5C35368187232AB /* PBXTargetDependency */,
+			);
+			name = YTimer;
+			packageProductDependencies = (
+			);
+			productName = YTimer;
+			productReference = D8D6EC7C4B2A148EF0D62C26 /* YTimer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		84871EAF24082D1501B2BBC3 /* YTimerWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5CE6A6549BA488B3E4E6D82 /* Build configuration list for PBXNativeTarget "YTimerWidget" */;
+			buildPhases = (
+				3F04325D124F849458FD94B0 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YTimerWidget;
+			packageProductDependencies = (
+			);
+			productName = YTimerWidget;
+			productReference = 58D12885688B758936694E68 /* YTimerWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C3DB64A77FD1484F1B27AECF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					007089D60135D82A148CEC0F = {
+						DevelopmentTeam = Z2G2F57LWN;
+						ProvisioningStyle = Automatic;
+					};
+					84871EAF24082D1501B2BBC3 = {
+						DevelopmentTeam = Z2G2F57LWN;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = CE9E4B99F623D17F104452F1 /* Build configuration list for PBXProject "YTimer" */;
+			developmentRegion = ko;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				ko,
+			);
+			mainGroup = 8E2F967AE63211B73844DBFA;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = EC366AB6739B08F10F2E583F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				007089D60135D82A148CEC0F /* YTimer */,
+				84871EAF24082D1501B2BBC3 /* YTimerWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		501E6D697AAE07A8F3489290 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E934D580544A06336BF39EF /* Assets.xcassets in Resources */,
+				8BD4035EB1A716E31042062F /* bell.caf in Resources */,
+				2E260941A3D4659E1D379AA1 /* digital.caf in Resources */,
+				E6064F01E3BBAACFFEA266D4 /* glass.caf in Resources */,
+				5073EE64C3DEAD476333F3F0 /* pulse.caf in Resources */,
+				A5F74EC48C31C15E71FC8E9C /* rise.caf in Resources */,
+				A41A48E6B515E2449BE5EED7 /* silent.caf in Resources */,
+				DADF7AB907782F43AE560F93 /* sounds.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3F04325D124F849458FD94B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59653D8C455E7F29286E40A0 /* AppConfig.swift in Sources */,
+				C1E0C151DA9D4A179417CFF9 /* LockScreenWidgets.swift in Sources */,
+				EEB5BF08AF8058124155ED94 /* PresetControl.swift in Sources */,
+				F79D76E804A85BBB98B01AB4 /* PresetWidget.swift in Sources */,
+				F074B0DA5C1664E6E65C5350 /* SharedDefaults.swift in Sources */,
+				6AEB984DBAA76F85DA5A662E /* Theme.swift in Sources */,
+				196C0067A86ABEDA25D449C9 /* TimerIntents.swift in Sources */,
+				CD666D38DCE3514484D3642B /* TimerLiveActivity.swift in Sources */,
+				A4B338775044FC7CF30B8508 /* TimerModels.swift in Sources */,
+				C33FA072345898AE51F92F27 /* TimerService.swift in Sources */,
+				E555EBC03AE44CC1C2146A96 /* YTimerWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5623491CBB18E76086C34DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29B3159504AB40BA0FF42F80 /* AppConfig.swift in Sources */,
+				D6AB8DE23DFABC894B5C836D /* ContentView.swift in Sources */,
+				B16DB2812B5F87854B15ECF7 /* DialView.swift in Sources */,
+				82BA889229FEE707E4F94B61 /* DurationWheel.swift in Sources */,
+				C0BE493487B4B8D278685894 /* PresetViews.swift in Sources */,
+				019025467F63317F23C2E1DC /* SettingsView.swift in Sources */,
+				48E86349B0C1C994E9E20393 /* SharedDefaults.swift in Sources */,
+				FD20EC362BEAB46EAB43D065 /* Theme.swift in Sources */,
+				B45C0CF1B2B00791364DCFD4 /* TimerIntents.swift in Sources */,
+				A6D40DFAC382CB3B90EC248A /* TimerModels.swift in Sources */,
+				592BA817BB2DB6A319059B85 /* TimerService.swift in Sources */,
+				08544A30A8DF06C4A18B066D /* TimerStore.swift in Sources */,
+				33F74435B78CAD1E4A016F10 /* YTimerApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2F50D350F5C35368187232AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84871EAF24082D1501B2BBC3 /* YTimerWidget */;
+			targetProxy = 7BE3202D7904A507BED5BAE8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		167B1305335E6E319BAADDC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = YTimer/YTimer.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = YTimer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_DISPLAY_NAME)";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3D27961B733C5B36C97FEB4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_AUTHOR = "sangseok youn";
+				APP_BUNDLE_ID = com.amamov.xtimer;
+				APP_DISPLAY_NAME = "Y-Timer";
+				APP_GROUP_ID = group.com.amamov.xtimer;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Z2G2F57LWN;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 0.2.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		41E57761F9C70E544A7ED9F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = YTimerWidget/YTimerWidget.entitlements;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = YTimerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_DISPLAY_NAME)";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID).widget";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8D1224631301D86EAE696C64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = YTimer/YTimer.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = YTimer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_DISPLAY_NAME)";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B5B65B9559493BFD695273E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_AUTHOR = "sangseok youn";
+				APP_BUNDLE_ID = com.amamov.xtimer;
+				APP_DISPLAY_NAME = "Y-Timer";
+				APP_GROUP_ID = group.com.amamov.xtimer;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Z2G2F57LWN;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 0.2.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		BB0FD80A140DB99F73714C02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = YTimerWidget/YTimerWidget.entitlements;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = YTimerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_DISPLAY_NAME)";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID).widget";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0DC80F6CB134A997F7D8EA84 /* Build configuration list for PBXNativeTarget "YTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				167B1305335E6E319BAADDC0 /* Debug */,
+				8D1224631301D86EAE696C64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CE9E4B99F623D17F104452F1 /* Build configuration list for PBXProject "YTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5B65B9559493BFD695273E0 /* Debug */,
+				3D27961B733C5B36C97FEB4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F5CE6A6549BA488B3E4E6D82 /* Build configuration list for PBXNativeTarget "YTimerWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB0FD80A140DB99F73714C02 /* Debug */,
+				41E57761F9C70E544A7ED9F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C3DB64A77FD1484F1B27AECF /* Project object */;
+}

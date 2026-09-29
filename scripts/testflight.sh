@@ -12,12 +12,12 @@ xcodegen generate --quiet
 rm -rf "$BUILD_DIR"
 
 echo "빌드 번호 $BUILD_NUMBER 아카이브 중"
-xcodebuild archive -project XTimer.xcodeproj -scheme XTimer -configuration Release \
-  -destination "generic/platform=iOS" -archivePath "$BUILD_DIR/XTimer.xcarchive" \
+xcodebuild archive -project YTimer.xcodeproj -scheme YTimer -configuration Release \
+  -destination "generic/platform=iOS" -archivePath "$BUILD_DIR/YTimer.xcarchive" \
   -allowProvisioningUpdates -quiet CURRENT_PROJECT_VERSION="$BUILD_NUMBER"
 
 echo "App Store Connect 로 업로드 중"
-xcodebuild -exportArchive -archivePath "$BUILD_DIR/XTimer.xcarchive" \
+xcodebuild -exportArchive -archivePath "$BUILD_DIR/YTimer.xcarchive" \
   -exportOptionsPlist scripts/ExportOptions.plist -exportPath "$BUILD_DIR/export" \
   -allowProvisioningUpdates
 

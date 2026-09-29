@@ -5,18 +5,19 @@ import WidgetKit
 struct TimerEntry: TimelineEntry {
     var date: Date
     var timer: RunningTimer?
+    var presets = PresetStore.minutes
 }
 
 struct TimerProvider: TimelineProvider {
     func placeholder(in context: Context) -> TimerEntry { TimerEntry(date: .now) }
 
     func getSnapshot(in context: Context, completion: @escaping (TimerEntry) -> Void) {
-        completion(TimerEntry(date: .now, timer: SharedStore.current))
+        completion(TimerEntry(date: .now, timer: RunningTimer.current))
     }
 
     /// 도는 동안 한 칸, 끝나는 순간 프리셋 화면으로 돌아가는 한 칸.
     func getTimeline(in context: Context, completion: @escaping (Timeline<TimerEntry>) -> Void) {
-        guard let timer = SharedStore.current, !timer.isFinished() else {
+        guard let timer = RunningTimer.current, !timer.isFinished() else {
             completion(Timeline(entries: [TimerEntry(date: .now)], policy: .never))
             return
         }
@@ -27,15 +28,15 @@ struct TimerProvider: TimelineProvider {
     }
 }
 
-/// 홈 화면 위젯: 누르면 앱을 열지 않고 바로 시작한다.
+/// 홈 화면 위젯: 앱에서 정한 프리셋. 누르면 앱을 열지 않고 바로 시작한다.
 struct PresetWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: "PresetWidget", provider: TimerProvider()) { entry in
             PresetWidgetView(entry: entry)
                 .containerBackground(for: .widget) { WidgetGlassBackground() }
         }
-        .configurationDisplayName("X-Timer")
-        .description("누르면 바로 시작합니다.")
+        .configurationDisplayName(AppConfig.displayName)
+        .description("앱에서 정한 프리셋을 누르면 바로 시작합니다.")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
@@ -54,6 +55,7 @@ struct WidgetGlassBackground: View {
 struct PresetWidgetView: View {
     @Environment(\.widgetFamily) private var family
     var entry: TimerEntry
+    private let columns = 3
 
     var body: some View {
         Group {
@@ -63,11 +65,9 @@ struct PresetWidgetView: View {
                     if let timer = entry.timer {
                         RunningSummary(timer: timer, compact: true)
                             .frame(maxWidth: .infinity)
-                        PresetButtons(columns: 3, selected: timer.minutes)
-                            .frame(maxWidth: .infinity)
-                    } else {
-                        PresetButtons(columns: 3, selected: nil)
                     }
+                    PresetButtons(presets: entry.presets, columns: columns, running: entry.timer)
+                        .frame(maxWidth: .infinity)
                 }
             case .systemLarge:
                 VStack(spacing: 18) {
@@ -76,13 +76,13 @@ struct PresetWidgetView: View {
                     } else {
                         IdleHeader()
                     }
-                    PresetButtons(columns: 3, selected: entry.timer?.minutes)
+                    PresetButtons(presets: entry.presets, columns: columns, running: entry.timer)
                 }
             default:
                 if let timer = entry.timer {
                     RunningSummary(timer: timer, compact: true)
                 } else {
-                    PresetButtons(columns: 3, selected: nil)
+                    PresetButtons(presets: entry.presets, columns: columns, running: nil)
                 }
             }
         }
@@ -93,7 +93,7 @@ struct PresetWidgetView: View {
 struct IdleHeader: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text("X-TIMER")
+            Text(AppConfig.wordmark)
                 .font(.system(size: 12, weight: .bold, design: .rounded))
                 .tracking(4)
                 .foregroundStyle(Theme.secondary)
@@ -104,9 +104,9 @@ struct IdleHeader: View {
     }
 }
 
-/// 유리 알약 버튼. 누른 칸 전체가 버튼이 되도록 label 이 칸을 꽉 채운다.
+/// 유리 버튼. 누른 칸 전체가 버튼이 되도록 label 이 칸을 꽉 채운다.
 struct GlassChip: View {
-    var preset: TimerPreset
+    var minutes: Int
     var selected: Bool
 
     var body: some View {
@@ -119,7 +119,7 @@ struct GlassChip: View {
                                    startPoint: .topLeading, endPoint: .bottomTrailing),
                     lineWidth: 0.8
                 )
-            Text(preset.label)
+            Text("\(minutes)")
                 .font(.system(size: 20, weight: selected ? .semibold : .regular, design: .rounded))
                 .monospacedDigit()
                 .minimumScaleFactor(0.6)
@@ -132,17 +132,17 @@ struct GlassChip: View {
 }
 
 struct PresetButtons: View {
+    var presets: [Int]
     var columns: Int
-    var selected: Int?
+    var running: RunningTimer?
 
     var body: some View {
-        let presets = TimerPreset.allCases
         Grid(horizontalSpacing: 8, verticalSpacing: 8) {
             ForEach(Array(stride(from: 0, to: presets.count, by: columns)), id: \.self) { row in
                 GridRow {
-                    ForEach(presets[row..<min(row + columns, presets.count)], id: \.self) { preset in
-                        Button(intent: StartTimerIntent(preset: preset)) {
-                            GlassChip(preset: preset, selected: selected == preset.minutes)
+                    ForEach(Array(presets[row..<min(row + columns, presets.count)].enumerated()), id: \.offset) { _, minutes in
+                        Button(intent: StartTimerIntent(minutes: minutes)) {
+                            GlassChip(minutes: minutes, selected: running?.matches(minutes: minutes) == true)
                         }
                         .buttonStyle(.plain)
                     }
@@ -159,10 +159,11 @@ struct RunningSummary: View {
     var body: some View {
         VStack(alignment: .leading, spacing: compact ? 6 : 10) {
             HStack {
-                Text("\(timer.minutes)분")
+                Text(timer.title)
                     .font(Theme.caption)
                     .tracking(2)
                     .foregroundStyle(Theme.secondary)
+                    .lineLimit(1)
                 Spacer()
                 Button(intent: StopTimerIntent(alarmID: timer.alarmID.uuidString)) {
                     Image(systemName: "stop.fill")
@@ -202,7 +203,7 @@ struct TimerStatusWidget: Widget {
             TimerStatusView(entry: entry)
                 .containerBackground(.clear, for: .widget)
         }
-        .configurationDisplayName("X-Timer 상태")
+        .configurationDisplayName("\(AppConfig.displayName) 상태")
         .description("남은 시간을 잠금 화면에 보여 줍니다.")
         .supportedFamilies([.accessoryInline])
     }
@@ -219,7 +220,7 @@ struct TimerStatusView: View {
                 Image(systemName: "timer")
             }
         } else {
-            Label("X-Timer", systemImage: "timer")
+            Label(AppConfig.displayName, systemImage: "timer")
         }
     }
 }

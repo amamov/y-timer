@@ -1,4 +1,4 @@
-// 앱 아이콘(1024x1024, 알파 없음)을 그린다. 사용법: swift scripts/make-icon.swift <출력.png>
+// 앱 아이콘(1024x1024, 알파 없음)을 그린다. 사용법: swift scripts/make-icon.swift <출력.png> <글자>
 import AppKit
 
 let size = 1024
@@ -21,7 +21,7 @@ ctx.addArc(center: center, radius: 330, startAngle: .pi / 2, endAngle: -.pi, clo
 ctx.strokePath()
 
 let font = NSFont.systemFont(ofSize: 360, weight: .light)
-let text = NSAttributedString(string: "X", attributes: [.font: font, .foregroundColor: NSColor.white])
+let text = NSAttributedString(string: CommandLine.arguments[2], attributes: [.font: font, .foregroundColor: NSColor.white])
 let line = CTLineCreateWithAttributedString(text)
 let bounds = CTLineGetBoundsWithOptions(line, .useGlyphPathBounds)
 ctx.textPosition = CGPoint(x: 512 - bounds.midX, y: 512 - bounds.midY)

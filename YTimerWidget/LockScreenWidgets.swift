@@ -2,29 +2,32 @@ import AppIntents
 import SwiftUI
 import WidgetKit
 
-enum PresetRow: String, AppEnum {
-    case short, long
-
-    var presets: [TimerPreset] { self == .short ? [.m5, .m10, .m15] : [.m30, .m60, .m100] }
-
-    static let typeDisplayRepresentation: TypeDisplayRepresentation = "프리셋 묶음"
-    static let caseDisplayRepresentations: [PresetRow: DisplayRepresentation] = [
-        .short: "5 · 10 · 15분", .long: "30 · 60 · 100분",
-    ]
-}
-
+/// 잠금 화면 원형 위젯에서 고르는 시간.
 struct LockPresetConfiguration: WidgetConfigurationIntent {
-    static let title: LocalizedStringResource = "X-Timer 시간"
+    static let title: LocalizedStringResource = "타이머 시간"
 
-    @Parameter(title: "시간", default: .m10)
-    var preset: TimerPreset
+    @Parameter(title: "분", default: 10, inclusiveRange: (1, 999))
+    var minutes: Int
 }
 
+/// 잠금 화면 직사각형 위젯의 세 칸. 기본은 IntentLiterals.lockRow 와 같다.
 struct LockRowConfiguration: WidgetConfigurationIntent {
-    static let title: LocalizedStringResource = "X-Timer 프리셋"
+    static let title: LocalizedStringResource = "타이머 세 칸"
 
-    @Parameter(title: "프리셋", default: .short)
-    var row: PresetRow
+    @Parameter(title: "첫째 (분)", default: 5, inclusiveRange: (1, 999))
+    var first: Int
+
+    @Parameter(title: "둘째 (분)", default: 10, inclusiveRange: (1, 999))
+    var second: Int
+
+    @Parameter(title: "셋째 (분)", default: 15, inclusiveRange: (1, 999))
+    var third: Int
+
+    var minutes: [Int] { [first, second, third] }
+
+    static var parameterSummary: some ParameterSummary {
+        Summary("\(\.$first)분 · \(\.$second)분 · \(\.$third)분")
+    }
 }
 
 struct ConfiguredEntry<Config>: TimelineEntry {
@@ -40,11 +43,11 @@ struct ConfiguredProvider<Config: WidgetConfigurationIntent>: AppIntentTimelineP
     }
 
     func snapshot(for configuration: Config, in context: Context) async -> ConfiguredEntry<Config> {
-        ConfiguredEntry(date: .now, timer: SharedStore.current, configuration: configuration)
+        ConfiguredEntry(date: .now, timer: RunningTimer.current, configuration: configuration)
     }
 
     func timeline(for configuration: Config, in context: Context) async -> Timeline<ConfiguredEntry<Config>> {
-        guard let timer = SharedStore.current, !timer.isFinished() else {
+        guard let timer = RunningTimer.current, !timer.isFinished() else {
             return Timeline(entries: [ConfiguredEntry(date: .now, configuration: configuration)], policy: .never)
         }
         return Timeline(entries: [
@@ -66,7 +69,7 @@ struct LockPresetWidget: Widget {
             LockPresetView(entry: entry)
                 .containerBackground(.clear, for: .widget)
         }
-        .configurationDisplayName("X-Timer 바로 시작")
+        .configurationDisplayName("\(AppConfig.displayName) 바로 시작")
         .description("잠금 화면에서 누르면 잠금 해제 없이 바로 시작합니다.")
         .supportedFamilies([.accessoryCircular])
     }
@@ -81,10 +84,10 @@ struct LockPresetView: View {
             if let timer = entry.timer {
                 RunningRing(timer: timer)
             } else {
-                let preset = entry.configuration.preset
-                Button(intent: StartTimerIntent(preset: preset)) {
+                let minutes = entry.configuration.minutes
+                Button(intent: StartTimerIntent(minutes: minutes)) {
                     VStack(spacing: -3) {
-                        Text(preset.label)
+                        Text("\(minutes)")
                             .font(.system(size: 24, weight: .semibold, design: .rounded))
                             .minimumScaleFactor(0.6)
                         Text("분").font(.system(size: 10, weight: .medium, design: .rounded))
@@ -106,8 +109,8 @@ struct LockRowWidget: Widget {
             LockRowView(entry: entry)
                 .containerBackground(.clear, for: .widget)
         }
-        .configurationDisplayName("X-Timer 프리셋 세 개")
-        .description("잠금 화면에서 세 가지 시간 중 하나를 눌러 잠금 해제 없이 바로 시작합니다.")
+        .configurationDisplayName("\(AppConfig.displayName) 세 칸")
+        .description("세 칸의 분을 직접 정하고, 잠금 화면에서 눌러 잠금 해제 없이 바로 시작합니다.")
         .supportedFamilies([.accessoryRectangular])
     }
 }
@@ -132,11 +135,11 @@ struct LockRowView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         } else {
             HStack(spacing: 6) {
-                ForEach(entry.configuration.row.presets, id: \.self) { preset in
+                ForEach(Array(entry.configuration.minutes.enumerated()), id: \.offset) { _, minutes in
                     ZStack {
                         AccessoryWidgetBackground().clipShape(Circle())
-                        Button(intent: StartTimerIntent(preset: preset)) {
-                            Text(preset.label)
+                        Button(intent: StartTimerIntent(minutes: minutes)) {
+                            Text("\(minutes)")
                                 .font(.system(size: 20, weight: .semibold, design: .rounded))
                                 .minimumScaleFactor(0.6)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -157,8 +160,10 @@ struct RunningRing: View {
         ProgressView(timerInterval: timer.interval, countsDown: true) {
             EmptyView()
         } currentValueLabel: {
-            Text("\(timer.minutes)")
-                .font(.system(size: 16, weight: .semibold, design: .rounded))
+            Text(timerInterval: timer.interval, countsDown: true)
+                .multilineTextAlignment(.center)
+                .minimumScaleFactor(0.5)
+                .font(.system(size: 12, weight: .semibold, design: .rounded))
         }
         .progressViewStyle(.circular)
     }

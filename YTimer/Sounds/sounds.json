@@ -1,0 +1,32 @@
+[
+  {
+    "id" : "glass",
+    "name" : "유리",
+    "file" : "glass.caf"
+  },
+  {
+    "id" : "pulse",
+    "name" : "펄스",
+    "file" : "pulse.caf"
+  },
+  {
+    "id" : "bell",
+    "name" : "종",
+    "file" : "bell.caf"
+  },
+  {
+    "id" : "rise",
+    "name" : "상승",
+    "file" : "rise.caf"
+  },
+  {
+    "id" : "digital",
+    "name" : "디지털",
+    "file" : "digital.caf"
+  },
+  {
+    "id" : "silent",
+    "name" : "소리 없음",
+    "file" : "silent.caf"
+  }
+]

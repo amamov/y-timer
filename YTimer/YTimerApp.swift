@@ -2,7 +2,7 @@ import AppIntents
 import SwiftUI
 
 @main
-struct XTimerApp: App {
+struct YTimerApp: App {
     @State private var store = TimerStore()
 
     var body: some Scene {
@@ -14,15 +14,12 @@ struct XTimerApp: App {
     }
 }
 
-/// 단축어·Siri·액션 버튼에서 "X-Timer 10분" 처럼 부른다.
-struct XTimerShortcuts: AppShortcutsProvider {
+/// 단축어·Siri·액션 버튼에서 부른다. 분은 Siri 가 되묻는다.
+struct YTimerShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
             intent: StartTimerIntent(),
-            phrases: [
-                "\(.applicationName) \(\.$preset) 시작",
-                "\(.applicationName) \(\.$preset)",
-            ],
+            phrases: ["\(.applicationName) 타이머 시작", "\(.applicationName) 시작"],
             shortTitle: "타이머 시작",
             systemImageName: "timer"
         )

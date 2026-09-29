@@ -1,56 +1,66 @@
-name: XTimer
+name: YTimer
 options:
   bundleIdPrefix: com.amamov
   deploymentTarget:
     iOS: "26.1"
   createIntermediateGroups: true
+  developmentLanguage: ko
 settings:
   base:
     SWIFT_VERSION: "5.0"
     DEVELOPMENT_TEAM: Z2G2F57LWN
     CODE_SIGN_STYLE: Automatic
-    MARKETING_VERSION: "0.1.0"
+    MARKETING_VERSION: "0.2.0"
     CURRENT_PROJECT_VERSION: "1"
     TARGETED_DEVICE_FAMILY: "1"
+    # 식별자와 서명은 여기 한 곳에서만 정한다. 코드는 Info.plist 로 읽는다.
+    APP_BUNDLE_ID: com.amamov.xtimer
+    APP_GROUP_ID: group.com.amamov.xtimer
+    APP_DISPLAY_NAME: Y-Timer
+    APP_AUTHOR: sangseok youn
 targets:
-  XTimer:
+  YTimer:
     type: application
     platform: iOS
     sources:
-      - XTimer
+      - YTimer
       - Shared
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.amamov.xtimer
-        CODE_SIGN_ENTITLEMENTS: XTimer/XTimer.entitlements
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID)
+        CODE_SIGN_ENTITLEMENTS: YTimer/YTimer.entitlements
         GENERATE_INFOPLIST_FILE: YES
-        INFOPLIST_KEY_CFBundleDisplayName: X-Timer
+        INFOPLIST_KEY_CFBundleDisplayName: $(APP_DISPLAY_NAME)
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
         INFOPLIST_KEY_NSSupportsLiveActivities: YES
         INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
     info:
-      path: XTimer/Info.plist
+      path: YTimer/Info.plist
       properties:
         NSAlarmKitUsageDescription: "타이머가 끝나면 무음 모드에서도 알람을 울리기 위해 필요합니다."
+        AppGroupIdentifier: $(APP_GROUP_ID)
+        AppAuthor: $(APP_AUTHOR)
     dependencies:
-      - target: XTimerWidget
-  XTimerWidget:
+      - target: YTimerWidget
+  YTimerWidget:
     type: app-extension
     platform: iOS
     sources:
-      - XTimerWidget
+      - YTimerWidget
       - Shared
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.amamov.xtimer.widget
-        CODE_SIGN_ENTITLEMENTS: XTimerWidget/XTimerWidget.entitlements
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).widget
+        CODE_SIGN_ENTITLEMENTS: YTimerWidget/YTimerWidget.entitlements
         GENERATE_INFOPLIST_FILE: YES
-        INFOPLIST_KEY_CFBundleDisplayName: X-Timer
+        INFOPLIST_KEY_CFBundleDisplayName: $(APP_DISPLAY_NAME)
         INFOPLIST_KEY_NSSupportsLiveActivities: YES
     info:
-      path: XTimerWidget/Info.plist
+      path: YTimerWidget/Info.plist
       properties:
+        AppGroupIdentifier: $(APP_GROUP_ID)
+        AppAuthor: $(APP_AUTHOR)
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension

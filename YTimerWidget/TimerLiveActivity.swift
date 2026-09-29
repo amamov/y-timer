@@ -7,17 +7,17 @@ import WidgetKit
 /// AlarmKit 이 띄우는 Live Activity 의 모양. 잠금 화면, 상시표시, 다이내믹 아일랜드, 스탠바이에 뜬다.
 struct TimerLiveActivity: Widget {
     var body: some WidgetConfiguration {
-        ActivityConfiguration(for: AlarmAttributes<XTimerMetadata>.self) { context in
-            LockScreenTimerView(minutes: context.attributes.metadata?.minutes, state: context.state)
+        ActivityConfiguration(for: AlarmAttributes<YTimerMetadata>.self) { context in
+            LockScreenTimerView(duration: context.attributes.metadata?.duration, state: context.state)
                 .padding(.horizontal, 22)
                 .padding(.vertical, 18)
                 .activityBackgroundTint(.black.opacity(0.55))
                 .activitySystemActionForegroundColor(.white)
         } dynamicIsland: { context in
-            let minutes = context.attributes.metadata?.minutes ?? 0
+            let title = context.attributes.metadata.map { TimerFormat.title($0.duration) } ?? ""
             return DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
-                    Text("\(minutes)분")
+                    Text(title)
                         .font(Theme.caption)
                         .tracking(2)
                         .foregroundStyle(Theme.secondary)
@@ -50,13 +50,13 @@ private func interval(_ countdown: AlarmPresentationState.Mode.Countdown) -> Clo
 }
 
 struct LockScreenTimerView: View {
-    var minutes: Int?
+    var duration: TimeInterval?
     var state: AlarmPresentationState
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text("X-TIMER · \(minutes ?? 0)분")
+                Text([AppConfig.wordmark, duration.map(TimerFormat.title)].compactMap { $0 }.joined(separator: " · "))
                     .font(Theme.caption)
                     .tracking(2)
                     .foregroundStyle(Theme.secondary)
@@ -97,7 +97,7 @@ struct TimerBody: View {
                     .tint(.white)
             }
         case .paused(let paused):
-            Text("일시정지 · \(Duration.seconds(paused.totalCountdownDuration - paused.previouslyElapsedDuration).clock) 남음")
+            Text("일시정지 · \(TimerFormat.clock(paused.totalCountdownDuration - paused.previouslyElapsedDuration)) 남음")
                 .font(.system(size: 22, weight: .light, design: .rounded))
         case .alert:
             Text("끝났습니다")

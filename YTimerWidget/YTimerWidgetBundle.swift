@@ -2,7 +2,7 @@ import SwiftUI
 import WidgetKit
 
 @main
-struct XTimerWidgetBundle: WidgetBundle {
+struct YTimerWidgetBundle: WidgetBundle {
     var body: some Widget {
         PresetWidget()
         LockPresetWidget()

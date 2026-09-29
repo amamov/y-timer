@@ -1,23 +1,25 @@
+import ActivityKit
 import AlarmKit
 import SwiftUI
-import WidgetKit
 
-struct XTimerMetadata: AlarmMetadata {
-    var minutes: Int
+struct YTimerMetadata: AlarmMetadata {
+    var duration: TimeInterval
 }
 
 enum TimerServiceError: Error, CustomLocalizedStringResourceConvertible {
     case notAuthorized
+    case invalidDuration
 
     var localizedStringResource: LocalizedStringResource {
-        "알람 권한이 없습니다. 설정 > 앱 > X-Timer 에서 알람을 허용해 주세요."
+        switch self {
+        case .notAuthorized: "알람 권한이 없습니다. 설정 > 앱 > \(AppConfig.displayName) 에서 알람을 허용해 주세요."
+        case .invalidDuration: "시간을 1초 이상으로 정해 주세요."
+        }
     }
 }
 
 /// 타이머는 하나만 돈다. 새로 시작하면 이전 것은 취소한다.
 enum TimerService {
-    static let tint = Color.white
-
     static func requestAuthorization() async -> Bool {
         let manager = AlarmManager.shared
         switch manager.authorizationState {
@@ -27,47 +29,60 @@ enum TimerService {
         }
     }
 
-    static func start(_ preset: TimerPreset) async throws {
-        guard await requestAuthorization() else { throw TimerServiceError.notAuthorized }
-        let manager = AlarmManager.shared
-        for alarm in (try? manager.alarms) ?? [] { try? manager.cancel(id: alarm.id) }
+    static func start(minutes: Int) async throws {
+        try await start(duration: TimerFormat.seconds(minutes: minutes))
+    }
 
-        let presentation = AlarmPresentation(
-            alert: .init(title: "\(preset.minutes)분 끝"),
-            countdown: .init(title: "\(preset.minutes)분")
-        )
+    static func start(duration: TimeInterval) async throws {
+        guard duration > 0 else { throw TimerServiceError.invalidDuration }
+        guard await requestAuthorization() else { throw TimerServiceError.notAuthorized }
+        cancelAll()
+
+        let settings = AlarmSettings.current
+        let title = TimerFormat.title(duration)
+        let repeatButton = settings.offersRepeat
+            ? AlarmButton(text: "다시", textColor: .white, systemImageName: "arrow.clockwise")
+            : nil
         let attributes = AlarmAttributes(
-            presentation: presentation,
-            metadata: XTimerMetadata(minutes: preset.minutes),
-            tintColor: tint
+            presentation: AlarmPresentation(
+                alert: .init(
+                    title: "\(title) 끝",
+                    secondaryButton: repeatButton,
+                    secondaryButtonBehavior: repeatButton == nil ? nil : .custom
+                ),
+                countdown: .init(title: "\(title)")
+            ),
+            metadata: YTimerMetadata(duration: duration),
+            tintColor: Theme.ink
         )
+
         let id = UUID()
         let start = Date.now
-        _ = try await manager.schedule(
+        _ = try await AlarmManager.shared.schedule(
             id: id,
             configuration: .timer(
-                duration: preset.duration,
+                duration: duration,
                 attributes: attributes,
-                stopIntent: StopTimerIntent(alarmID: id.uuidString)
+                stopIntent: StopTimerIntent(alarmID: id.uuidString),
+                secondaryIntent: repeatButton == nil ? nil : RepeatTimerIntent(duration: duration),
+                sound: settings.soundFile.map { .named($0) } ?? .default
             )
         )
-        SharedStore.current = RunningTimer(
+        RunningTimer.current = RunningTimer(
             alarmID: id,
-            minutes: preset.minutes,
+            duration: duration,
             startDate: start,
-            endDate: start.addingTimeInterval(preset.duration)
+            endDate: start.addingTimeInterval(duration)
         )
-        WidgetCenter.shared.reloadAllTimelines()
     }
 
     static func stop() {
-        let manager = AlarmManager.shared
-        for alarm in (try? manager.alarms) ?? [] { try? manager.cancel(id: alarm.id) }
-        clear()
+        cancelAll()
+        RunningTimer.current = nil
     }
 
-    static func clear() {
-        SharedStore.current = nil
-        WidgetCenter.shared.reloadAllTimelines()
+    private static func cancelAll() {
+        let manager = AlarmManager.shared
+        for alarm in (try? manager.alarms) ?? [] { try? manager.cancel(id: alarm.id) }
     }
 }
