@@ -20,6 +20,19 @@ struct ContentView: View {
     @State private var showsPresetEditor = false
 
     var body: some View {
+        #if DEBUG
+        let args = ProcessInfo.processInfo.arguments
+        if let i = args.firstIndex(of: "-demoGallery"), args.indices.contains(i + 1), let page = Int(args[i + 1]) {
+            WidgetGallery(page: page)
+        } else {
+            main
+        }
+        #else
+        main
+        #endif
+    }
+
+    @ViewBuilder private var main: some View {
         @Bindable var store = store
         // 가로(스탠바이 등)에서는 다이얼과 조작부를 나란히 둔다.
         let layout = verticalSizeClass == .compact
@@ -117,6 +130,8 @@ struct Controls: View {
             case .custom:
                 VStack(spacing: 14) {
                     DurationWheel(seconds: $customSeconds)
+                        .frame(height: 180)
+                        .glassEffect(.regular, in: .rect(cornerRadius: 28))
                     Button { store.start(duration: TimeInterval(customSeconds)) } label: {
                         Label("시작", systemImage: "play.fill")
                             .font(Theme.label)
