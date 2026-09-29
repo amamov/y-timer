@@ -60,6 +60,7 @@
 		356A49576B8C26823A3B6895 /* TimerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStore.swift; sourceTree = "<group>"; };
 		4419F3485939B81FB6628C9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		485850C38246F4554969439E /* TimerPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPreset.swift; sourceTree = "<group>"; };
+		4C8A58241786883866191C61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4DA2F5A24E5774597C89BB9A /* XTimerWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XTimerWidget.entitlements; sourceTree = "<group>"; };
 		6F20004DC756C4EF37C59950 /* XTimer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = XTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EE29945D0AB72ECFDDAF2C4 /* XTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTimerApp.swift; sourceTree = "<group>"; };
@@ -122,6 +123,7 @@
 			children = (
 				4419F3485939B81FB6628C9F /* Assets.xcassets */,
 				EFD828CD552D9B28CDB2AFE3 /* ContentView.swift */,
+				4C8A58241786883866191C61 /* Info.plist */,
 				356A49576B8C26823A3B6895 /* TimerStore.swift */,
 				33284B931B721296729303F9 /* XTimer.entitlements */,
 				9EE29945D0AB72ECFDDAF2C4 /* XTimerApp.swift */,
@@ -287,9 +289,9 @@
 				CODE_SIGN_ENTITLEMENTS = XTimer/XTimer.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = XTimer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "X-Timer";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSAlarmKitUsageDescription = "타이머가 끝나면 무음 모드에서도 알람을 울리기 위해 필요합니다.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -397,9 +399,9 @@
 				CODE_SIGN_ENTITLEMENTS = XTimer/XTimer.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = XTimer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "X-Timer";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSAlarmKitUsageDescription = "타이머가 끝나면 무음 모드에서도 알람을 울리기 위해 필요합니다.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

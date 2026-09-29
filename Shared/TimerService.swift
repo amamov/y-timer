@@ -10,7 +10,7 @@ enum TimerServiceError: Error, CustomLocalizedStringResourceConvertible {
     case notAuthorized
 
     var localizedStringResource: LocalizedStringResource {
-        "X-Timer 앱을 한 번 열어 알람 권한을 허용해 주세요."
+        "알람 권한이 없습니다. 설정 > 앱 > X-Timer 에서 알람을 허용해 주세요."
     }
 }
 
