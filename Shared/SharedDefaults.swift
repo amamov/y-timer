@@ -4,7 +4,7 @@ import WidgetKit
 /// 앱과 위젯이 App Group 으로 함께 읽고 쓰는 값.
 enum SharedDefaults {
     enum Key: String {
-        case runningTimer, presets, alarmSettings
+        case runningTimer, presets, alarmSettings, widgetSelection
     }
 
     private static var store: UserDefaults { UserDefaults(suiteName: AppConfig.appGroup) ?? .standard }

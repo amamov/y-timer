@@ -1,20 +1,22 @@
 import SwiftUI
 
+/// 프리셋 원 여섯 개. 칸 번호로 고르고 알린다.
 struct PresetGrid: View {
     var presets: [Int]
-    var selected: Int?
+    var selected: Set<Int>
     var onSelect: (Int) -> Void
     var columns = 3
 
     var body: some View {
         GlassEffectContainer(spacing: 12) {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: columns), spacing: 12) {
-                ForEach(Array(presets.enumerated()), id: \.offset) { index, minutes in
-                    Button { onSelect(minutes) } label: {
-                        PresetChipLabel(minutes: minutes, isSelected: selected == index)
+                ForEach(presets.indices, id: \.self) { slot in
+                    let isSelected = selected.contains(slot)
+                    Button { onSelect(slot) } label: {
+                        PresetChipLabel(minutes: presets[slot], isSelected: isSelected)
                     }
                     .buttonStyle(.plain)
-                    .glassEffect(selected == index ? .regular.tint(.white).interactive() : .regular.interactive(), in: .circle)
+                    .glassEffect(isSelected ? .regular.tint(.white).interactive() : .regular.interactive(), in: .circle)
                 }
             }
         }
@@ -45,37 +47,59 @@ struct PresetChipLabel: View {
     }
 }
 
-/// 프리셋 편집: 칸을 고르고 아래 휠로 분을 정한다.
+/// 프리셋 편집에서 무엇을 고치는지.
+enum PresetEditTarget: String, CaseIterable, Identifiable {
+    case values, lockRow, lockSingle
+    var id: Self { self }
+
+    var title: String {
+        switch self {
+        case .values: "시간"
+        case .lockRow: "세 칸"
+        case .lockSingle: "한 칸"
+        }
+    }
+}
+
+/// 프리셋 값과, 잠금 화면 위젯이 쓸 칸을 고른다.
 struct PresetEditor: View {
     @Environment(TimerStore.self) private var store
     @Environment(\.dismiss) private var dismiss
+    @State private var target = PresetEditTarget.values
     @State private var slot = 0
 
     var body: some View {
         NavigationStack {
-            VStack(spacing: 24) {
-                PresetGrid(presets: store.presets, selected: slot, onSelect: { minutes in
-                    slot = store.presets.firstIndex(of: minutes) ?? slot
-                })
-                .frame(maxWidth: 320)
-
-                Picker("분", selection: Binding(
-                    get: { store.presets[slot] },
-                    set: { store.setPreset($0, at: slot) }
-                )) {
-                    ForEach(TimerLimits.presetMinutes, id: \.self) { Text("\($0)분").tag($0) }
+            VStack(spacing: 28) {
+                Picker("대상", selection: $target) {
+                    ForEach(PresetEditTarget.allCases) { Text($0.title).tag($0) }
                 }
-                .pickerStyle(.wheel)
-                .frame(height: 180)
+                .pickerStyle(.segmented)
 
-                Spacer()
+                PresetGrid(presets: store.presets, selected: selected, onSelect: select)
+                    .frame(maxWidth: 320)
+
+                if target == .values {
+                    Picker("분", selection: Binding(
+                        get: { store.presets[slot] },
+                        set: { store.setPreset($0, at: slot) }
+                    )) {
+                        ForEach(TimerLimits.presetMinutes, id: \.self) { Text("\($0)분").tag($0) }
+                    }
+                    .pickerStyle(.wheel)
+                    .frame(height: 180)
+                }
+                Spacer(minLength: 0)
             }
             .padding(24)
-            .navigationTitle("프리셋 편집")
+            .animation(.smooth, value: target)
+            .navigationTitle("프리셋")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("기본값") { store.resetPresets() }
+                if target == .values {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button("기본값") { store.resetPresets() }
+                    }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("완료", systemImage: "checkmark") { dismiss() }
@@ -84,5 +108,21 @@ struct PresetEditor: View {
         }
         .presentationDetents([.large])
         .preferredColorScheme(.dark)
+    }
+
+    private var selected: Set<Int> {
+        switch target {
+        case .values: [slot]
+        case .lockRow: Set(store.selection.row)
+        case .lockSingle: [store.selection.single]
+        }
+    }
+
+    private func select(_ tapped: Int) {
+        switch target {
+        case .values: slot = tapped
+        case .lockRow: store.updateSelection { $0.toggleRow(tapped) }
+        case .lockSingle: store.updateSelection { $0.single = tapped }
+        }
     }
 }

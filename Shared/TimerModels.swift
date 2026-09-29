@@ -31,6 +31,38 @@ enum PresetStore {
     static func reset() { SharedDefaults.set(Optional<[Int]>.none, for: .presets) }
 }
 
+/// 잠금 화면 위젯이 쓸 프리셋 칸. 칸 번호로 가리키므로 프리셋 값을 고치면 위젯도 따라간다.
+struct WidgetSelection: Codable, Equatable {
+    /// 세 칸 위젯. 고른 순서대로 쌓이고, 넘치면 가장 먼저 고른 칸이 빠진다.
+    var row = TimerLimits.defaultLockRowSlots
+    /// 한 칸 위젯.
+    var single = TimerLimits.defaultSingleSlot
+
+    static var current: WidgetSelection {
+        get { SharedDefaults.value(.widgetSelection) ?? WidgetSelection() }
+        set { SharedDefaults.set(newValue, for: .widgetSelection) }
+    }
+
+    /// 위젯에는 프리셋 순서대로 놓는다.
+    func rowMinutes(in presets: [Int]) -> [Int] {
+        row.sorted().filter(presets.indices.contains).map { presets[$0] }
+    }
+
+    func singleMinutes(in presets: [Int]) -> Int {
+        presets.indices.contains(single) ? presets[single] : TimerLimits.defaultSingle
+    }
+
+    mutating func toggleRow(_ slot: Int) {
+        if let index = row.firstIndex(of: slot) {
+            guard row.count > 1 else { return }
+            row.remove(at: index)
+        } else {
+            row.append(slot)
+            if row.count > TimerLimits.lockRowCount { row.removeFirst() }
+        }
+    }
+}
+
 /// 끝났을 때의 동작.
 struct AlarmSettings: Codable, Equatable {
     /// 앱에 든 소리 파일 이름. nil 이면 시스템 기본음.

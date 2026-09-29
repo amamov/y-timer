@@ -8,6 +8,7 @@ final class TimerStore {
     private(set) var current: RunningTimer? = RunningTimer.current
     private(set) var presets: [Int] = PresetStore.minutes
     private(set) var settings: AlarmSettings = AlarmSettings.current
+    private(set) var selection: WidgetSelection = WidgetSelection.current
     var errorMessage: String?
 
     private var isDemo: Bool {
@@ -61,6 +62,11 @@ final class TimerStore {
     func resetPresets() {
         PresetStore.reset()
         presets = PresetStore.minutes
+    }
+
+    func updateSelection(_ change: (inout WidgetSelection) -> Void) {
+        change(&selection)
+        WidgetSelection.current = selection
     }
 
     func updateSettings(_ change: (inout AlarmSettings) -> Void) {

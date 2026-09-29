@@ -71,12 +71,10 @@ struct StopTimerIntent: LiveActivityIntent {
 /// 인텐트·위젯 설정에 리터럴로 적은 값이 TimerLimits 와 어긋나면 디버그 빌드에서 바로 멈춘다.
 enum IntentLiterals {
     static let single = 10
-    static let lockRow = [5, 10, 15]
     static let range = (1, 999)
 
     static func verify() {
         assert(single == TimerLimits.defaultSingle, "StartTimerIntent 기본값이 TimerLimits 와 다릅니다")
-        assert(lockRow == TimerLimits.defaultLockRow, "잠금 화면 위젯 기본값이 TimerLimits 와 다릅니다")
         assert(range.0 == TimerLimits.presetMinutes.lowerBound && range.1 == TimerLimits.presetMinutes.upperBound,
                "분 범위가 TimerLimits 와 다릅니다")
     }

@@ -124,8 +124,8 @@ struct Controls: View {
             case .presets:
                 PresetGrid(
                     presets: store.presets,
-                    selected: store.current.flatMap { timer in store.presets.firstIndex(where: timer.matches) },
-                    onSelect: store.start(minutes:)
+                    selected: Set(store.presets.indices.filter { store.current?.matches(minutes: store.presets[$0]) == true }),
+                    onSelect: { store.start(minutes: store.presets[$0]) }
                 )
             case .custom:
                 VStack(spacing: 14) {

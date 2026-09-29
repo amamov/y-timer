@@ -6,6 +6,7 @@ struct TimerEntry: TimelineEntry {
     var date: Date
     var timer: RunningTimer?
     var presets = PresetStore.minutes
+    var selection = WidgetSelection.current
 }
 
 struct TimerProvider: TimelineProvider {

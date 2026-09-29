@@ -19,8 +19,12 @@ enum TimerLimits {
     static let secondsPerMinute = 60
 
     static let defaultPresets = [5, 10, 15, 30, 60, 100]
-    static let defaultLockRow = Array(defaultPresets.prefix(3))
-    static let defaultSingle = defaultPresets[1]
+    /// 잠금 화면 위젯은 앱 프리셋 칸 번호로 고른다.
+    static let lockRowCount = 3
+    static let defaultLockRowSlots = Array(0..<lockRowCount)
+    static let defaultSingleSlot = 1
+    static let defaultLockRow = defaultLockRowSlots.map { defaultPresets[$0] }
+    static let defaultSingle = defaultPresets[defaultSingleSlot]
 
     static func clampMinutes(_ minutes: Int) -> Int {
         min(max(minutes, presetMinutes.lowerBound), presetMinutes.upperBound)
