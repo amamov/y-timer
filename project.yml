@@ -29,6 +29,8 @@ targets:
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
         INFOPLIST_KEY_NSSupportsLiveActivities: YES
         INFOPLIST_KEY_NSAlarmKitUsageDescription: "타이머가 끝나면 무음 모드에서도 알람을 울리기 위해 필요합니다."
+        INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
     dependencies:
       - target: XTimerWidget
   XTimerWidget:

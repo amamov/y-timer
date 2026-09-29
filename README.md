@@ -24,6 +24,14 @@
 
 처음 한 번은 Xcode > Settings > Accounts 에 Apple ID 로 로그인되어 있어야 한다. 폰에서는 설정 > 개인정보 보호 및 보안 > 개발자 모드를 켠다.
 
+## TestFlight 에 올리기
+
+```sh
+./scripts/testflight.sh
+```
+
+빌드 번호는 실행 시각으로 자동으로 붙는다. 처음 한 번은 App Store Connect 에 번들 ID `com.amamov.xtimer` 로 앱을 등록해 두어야 한다.
+
 ## 빌드
 
 ```sh

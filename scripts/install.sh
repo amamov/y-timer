@@ -37,7 +37,7 @@ echo "설치할 기기: $DEVICE"
 
 xcodebuild -project XTimer.xcodeproj -scheme XTimer -configuration Release \
   -destination "id=$DEVICE" -derivedDataPath "$BUILD_DIR" \
-  -allowProvisioningUpdates -quiet build \
+  -allowProvisioningUpdates -allowProvisioningDeviceRegistration -quiet build \
   || { echo "빌드·서명 실패. Xcode > Settings > Accounts 에 Apple ID 가 로그인되어 있는지 확인하세요."; exit 1; }
 
 APP="$BUILD_DIR/Build/Products/Release-iphoneos/XTimer.app"

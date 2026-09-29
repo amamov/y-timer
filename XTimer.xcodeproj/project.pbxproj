@@ -20,6 +20,7 @@
 		CAD139560202C76193A0A328 /* XTimerWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E43D496D41CC1C152F83EEE4 /* XTimerWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D70E2E175FE0AD11AB75F55A /* RunningTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB70C14DE5F4F533C5FB42C /* RunningTimer.swift */; };
 		E224CB9DFD3319D72E08459F /* RunningTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB70C14DE5F4F533C5FB42C /* RunningTimer.swift */; };
+		E5D6B9BC0F1B98881D0EE520 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4419F3485939B81FB6628C9F /* Assets.xcassets */; };
 		E7D9CEBC35CE2083F802D5E7 /* TimerLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1635D0326F1404794408D289 /* TimerLiveActivity.swift */; };
 		F5E2DB0C4E7AA7F00A0BD751 /* XTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE29945D0AB72ECFDDAF2C4 /* XTimerApp.swift */; };
 		F87C9E46C44188E5BE96DE60 /* TimerIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5B76AB164486ED266C0D1 /* TimerIntents.swift */; };
@@ -56,6 +57,7 @@
 		2498FA1D87476E51951FDCF1 /* PresetWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetWidget.swift; sourceTree = "<group>"; };
 		33284B931B721296729303F9 /* XTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XTimer.entitlements; sourceTree = "<group>"; };
 		356A49576B8C26823A3B6895 /* TimerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStore.swift; sourceTree = "<group>"; };
+		4419F3485939B81FB6628C9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		485850C38246F4554969439E /* TimerPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPreset.swift; sourceTree = "<group>"; };
 		4DA2F5A24E5774597C89BB9A /* XTimerWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XTimerWidget.entitlements; sourceTree = "<group>"; };
 		6F20004DC756C4EF37C59950 /* XTimer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = XTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +117,7 @@
 		CD1577D799A431FC86CBBD3D /* XTimer */ = {
 			isa = PBXGroup;
 			children = (
+				4419F3485939B81FB6628C9F /* Assets.xcassets */,
 				EFD828CD552D9B28CDB2AFE3 /* ContentView.swift */,
 				356A49576B8C26823A3B6895 /* TimerStore.swift */,
 				33284B931B721296729303F9 /* XTimer.entitlements */,
@@ -131,6 +134,7 @@
 			buildConfigurationList = DEA42A5B06B01355E8298ACB /* Build configuration list for PBXNativeTarget "XTimer" */;
 			buildPhases = (
 				0550BDE19B560FE8769B1366 /* Sources */,
+				47521ACA8F1616349FE73263 /* Resources */,
 				A6477126C69C4B82B3455173 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -201,6 +205,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		47521ACA8F1616349FE73263 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5D6B9BC0F1B98881D0EE520 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0550BDE19B560FE8769B1366 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -269,6 +284,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "X-Timer";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSAlarmKitUsageDescription = "타이머가 끝나면 무음 모드에서도 알람을 울리기 위해 필요합니다.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -378,6 +394,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "X-Timer";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSAlarmKitUsageDescription = "타이머가 끝나면 무음 모드에서도 알람을 울리기 위해 필요합니다.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
