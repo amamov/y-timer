@@ -63,12 +63,25 @@ struct WidgetSelection: Codable, Equatable {
     }
 }
 
-/// 끝났을 때의 동작.
+/// 알람과 화면 동작.
 struct AlarmSettings: Codable, Equatable {
     /// 앱에 든 소리 파일 이름. nil 이면 시스템 기본음.
     var soundFile: String?
     /// 알람 화면에 '다시' 버튼을 둔다. 누르면 같은 시간으로 다시 시작한다.
     var offersRepeat = true
+    /// 타이머가 도는 동안 앱이 떠 있으면 화면이 꺼지지 않게 한다.
+    var keepsScreenOn = true
+
+    init() {}
+
+    /// 항목이 늘어도 예전에 저장한 설정을 그대로 읽는다. 없는 항목만 기본값이 된다.
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let defaults = AlarmSettings()
+        soundFile = try container.decodeIfPresent(String.self, forKey: .soundFile)
+        offersRepeat = try container.decodeIfPresent(Bool.self, forKey: .offersRepeat) ?? defaults.offersRepeat
+        keepsScreenOn = try container.decodeIfPresent(Bool.self, forKey: .keepsScreenOn) ?? defaults.keepsScreenOn
+    }
 
     static var current: AlarmSettings {
         get { SharedDefaults.value(.alarmSettings) ?? AlarmSettings() }

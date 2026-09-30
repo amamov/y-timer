@@ -15,6 +15,7 @@ enum TimerMode: String, CaseIterable, Identifiable {
 struct ContentView: View {
     @Environment(TimerStore.self) private var store
     @Environment(\.verticalSizeClass) private var verticalSizeClass
+    @Environment(\.scenePhase) private var scenePhase
     @AppStorage("timerMode") private var mode = TimerMode.presets
     @State private var showsSettings = false
     @State private var showsPresetEditor = false
@@ -54,6 +55,10 @@ struct ContentView: View {
         }
         .foregroundStyle(Theme.ink)
         .task { await store.requestAuthorization() }
+        // 타이머가 도는 동안 앱이 떠 있으면 화면이 꺼지지 않는다. 멈추거나 앱을 벗어나면 원래대로.
+        .onChange(of: keepsAwake, initial: true) { _, awake in
+            UIApplication.shared.isIdleTimerDisabled = awake
+        }
         #if DEBUG
         // 시뮬레이터에서 시트 화면을 확인할 때만 쓴다: -demoSheet settings|presets
         .onAppear {
@@ -70,6 +75,12 @@ struct ContentView: View {
         } message: {
             Text(store.errorMessage ?? "")
         }
+    }
+}
+
+extension ContentView {
+    private var keepsAwake: Bool {
+        store.settings.keepsScreenOn && store.current != nil && scenePhase == .active
     }
 }
 

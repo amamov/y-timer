@@ -58,6 +58,11 @@ struct SettingsView: View {
                         set: { value in store.updateSettings { $0.offersRepeat = value } }
                     ))
                     .tint(Theme.secondary)
+                    Toggle("화면 켜 두기", isOn: Binding(
+                        get: { store.settings.keepsScreenOn },
+                        set: { value in store.updateSettings { $0.keepsScreenOn = value } }
+                    ))
+                    .tint(Theme.secondary)
                 }
             }
             .tint(Theme.ink)
